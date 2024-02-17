@@ -180,12 +180,12 @@
   function odhlas(){
     localStorage.removeItem("heslo");
     localStorage.removeItem("jmeno");
-    window.location.href = "file:///home/honza/Dokumenty/slozka/aaa%20-%20projekty/ngl/login.html";
+    window.location.href = "login.html";
 
   }
   function chyba(data){
     if (data.typ == "heslo"){
-      location.href = "file:///home/honza/Dokumenty/slozka/aaa%20-%20projekty/ngl/login.html#chyba"
+      location.href = "login.html#chyba"
     
   }else{
     alert("chyba při přihlašování")
@@ -197,7 +197,7 @@
     heslo = localStorage.getItem("heslo");
 
     if (jmeno == null || heslo == null){
-      window.location.href = "file:///home/honza/Dokumenty/slozka/aaa%20-%20projekty/ngl/login.html";
+      window.location.href = "login.html";
     }
 
     console.log('<script async src="https://script.google.com/macros/s/AKfycbwTqS0vzNNJV7bCS37qe1Ezoj_Gl0VHO7VAtMmwCDufWiQSfp9HIxU2aBbL7bej3Weg/exec?jsonp=nacteno&jmeno='+encodeURIComponent(jmeno)+'&heslo='+encodeURIComponent(heslo)+'">')
