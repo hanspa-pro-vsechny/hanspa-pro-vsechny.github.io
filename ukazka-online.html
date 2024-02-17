@@ -1,0 +1,209 @@
+
+<style>
+
+</style>
+<body><script>
+   
+   
+
+
+
+
+
+</script><style type="text/css">
+  
+    .cas{margin:10px;color:white}
+    html,body{
+      background:black !important;
+      font-size:1.3em;
+      font-family: sans-serif;
+      font-weight: bold;
+      font-weight: 800;
+      text-align: center;
+    }
+    button{
+      padding:15px;
+    }
+        .main{
+          width: 14em;
+          margin: 0 auto;
+          
+        }
+        .policko{
+        }
+        .obalTextarea{
+              background-color: rgba(255,255,255,1);
+              width:100%;
+              min-height:100px;
+              border-bottom-left-radius:30px;
+              border-bottom-right-radius:30px;
+              padding:1em;        }
+        textarea{
+          width:100%;
+          margin:0;
+      background: transparent;
+          padding:0;
+          font-family: sans-serif;
+          font-size:1.3rem;
+          outline:0;
+          height:100%;
+          resize: vertical;
+            font-weight: bold;
+            border:none;
+            height:80px;
+
+
+
+        }
+        .top{
+          color:white;
+          width:100%;
+          border-top-left-radius:30px;
+          border-top-right-radius:30px;
+          padding:20px;
+          background: #EC1187 linear-gradient(to bottom right, #EC1187 0%, #FF8D10 100%);
+            background-repeat: no-repeat;
+            padding:1em;
+
+
+
+        }
+        .text{
+          margin:0 1em ;
+        }
+        html {
+          box-sizing: border-box;
+        }
+        *, *:before, *:after {
+          box-sizing: inherit;
+        }
+        .ne{
+            background-color:#020063;
+            padding:44px 0;
+
+        }
+        .smazáno{
+            background-color:#630000;
+            padding:44px 0;
+        }
+        .ano{
+          background-color:#transparent;
+          padding:44px 0;
+        }
+        .test{
+          background-color: #f59089;
+          padding:44px 0;
+        }
+        .spodek{
+          padding:44px 0;
+          background: #EC1187 linear-gradient(to bottom right, #EC1187 0%, #FF8D10 100%);
+        }
+        a{
+          text-decoration: none;
+          color:black;
+        }
+        #nacitani {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .centered-text {
+            color: white; /* změnil jsem barvu na bílou, aby byl text viditelný na černém pozadí */
+            font-size: 1.3em; /* ponechal jsem původní velikost písma */
+            font-family: sans-serif; /* ponechal jsem původní font */
+            font-weight: 800; /* ponechal jsem původní tučnost */
+            text-align: center; /* ponechal jsem původní zarovnání textu */
+        }
+        header{
+              background: #EC1187 linear-gradient(to bottom right, #EC1187 0%, #FF8D10 100%);
+              text-align: center;
+              position:absolute;
+              top:0;
+              left:0;
+              width: 100%;
+        }
+        .tlacitko{
+          width:100%;
+          background-color: black;
+          border-radius:100px;
+          margin:10px;
+          color:white;
+          font-size:1.2rem;
+          border:none;
+          outline:none;
+          padding:15px;
+          cursor:pointer;
+        }
+        body{
+          cursor: wait;
+                  }
+  
+</style>
+<body>
+  
+  <div id=nacitani>
+    <header>
+      <img style=height:5em src="logo.svg">
+
+    </header>
+    <div class="centered-text">
+    <p style="font-size:1.5em">Načítání...</p>
+    <p style="font-size:.5em">IG: @hanspa.pro.vsechny</p>
+    <progress>
+
+  </div>
+  </div>
+  <script type="text/javascript">
+    function nacteno(http){
+      data = http.data
+      var nacitani = document.getElementById('nacitani')
+      nacitani.style.display = "none"
+      data.forEach(function(e){
+        if(e["otázka"] != undefined){
+          document.body.innerHTML += '<a href="'+e["odkaz na sdílení"]+'"><div class="'+e["hotovo?"]+'"><div class="main"><div class="cas">'+(new Date(e["čas"])).toLocaleDateString()+'</div><div class="top">pošli mi<br>anonymní zprávy!</div><div class="obalTextarea"><div id="text" class="text">'+e["otázka"]+'</div></div></div></div></a>';
+        }else{
+          document.body.innerHTML += "<div><p>Prázdná otázka</div>"
+        }
+
+      });
+      document.body.style.cursor = "default"
+      document.body.innerHTML += "<div class=spodek><div  class=main ><p>Přihlášen jako "+http.jmeno+"<br><button class=tlacitko onclick=odhlas()>odhlásit se</button></div></div>"
+
+
+      
+
+      document.body.scrollTop = document.body.scrollHeight
+
+}
+  function odhlas(){
+    localStorage.removeItem("heslo");
+    localStorage.removeItem("jmeno");
+    window.location.href = "file:///home/honza/Dokumenty/slozka/aaa%20-%20projekty/ngl/login.html";
+
+  }
+  function chyba(data){
+    if (data.typ == "heslo"){
+      location.href = "file:///home/honza/Dokumenty/slozka/aaa%20-%20projekty/ngl/login.html#chyba"
+    
+  }else{
+    alert("chyba při přihlašování")
+  }}
+
+
+
+    jmeno = localStorage.getItem("jmeno");
+    heslo = localStorage.getItem("heslo");
+
+    if (jmeno == null || heslo == null){
+      window.location.href = "file:///home/honza/Dokumenty/slozka/aaa%20-%20projekty/ngl/login.html";
+    }
+
+    console.log('<script async src="https://script.google.com/macros/s/AKfycbwTqS0vzNNJV7bCS37qe1Ezoj_Gl0VHO7VAtMmwCDufWiQSfp9HIxU2aBbL7bej3Weg/exec?jsonp=nacteno&jmeno='+encodeURIComponent(jmeno)+'&heslo='+encodeURIComponent(heslo)+'">')
+    document.write('<script async src="https://script.google.com/macros/s/AKfycbwTqS0vzNNJV7bCS37qe1Ezoj_Gl0VHO7VAtMmwCDufWiQSfp9HIxU2aBbL7bej3Weg/exec?jsonp=nacteno&jmeno='+encodeURIComponent(jmeno)+'&heslo='+encodeURIComponent(heslo)+'">')
+  </script>
+
+ 
+</script>
+</body>
