@@ -71,8 +71,14 @@
         .text{
           margin:0 1em ;
         }
+        body{
+              overflow: auto;
+
+        }
         html {
           box-sizing: border-box;
+          overflow: auto;
+
         }
         *, *:before, *:after {
           box-sizing: inherit;
@@ -139,41 +145,79 @@
         body{
           cursor: wait;
                   }
+                  #nactene{
+                    display:none;
+                  }
+        .spodek .main{
+          background-color:whitesmoke;
+          /*outline:2em solid whitesmoke;*/
+          padding:3em;
+          width:19em;
+          background-color: rgba(255,255,255,0.4);
+          border-radius: 30px;
+        }
   
 </style>
 <body>
-  
-  <div id=nacitani>
-    <header>
-      <img style=height:5em src="logo.svg">
+  <header>
+    <img style=height:5em src="logo.svg">
 
-    </header>
+  </header>
+
+  <div id=nacitani>
+
     <div class="centered-text">
-    <p style="font-size:1.5em">Načítání...</p>
+    <p id=textNacitani style="font-size:1.5em">Načítání...</p>
     <p style="font-size:.5em">IG: @hanspa.pro.vsechny</p>
     <progress>
 
   </div>
   </div>
+  <div id="nactene">
+    <div class=vycpavka style=height:5em></div>
+    <div class=spodek><div  class=main ><p>Přihlášen jako <span class="jmeno-js"></span><br><button class=tlacitko onclick=odhlas()>odhlásit se</button><a href=napsat.html ><button class=tlacitko >napsat anonymní zprávu</button><a/><p>nejnovější zprávy jsou nahoře.</div></div>
+
+    <div id="zpravy"></div>
+    <div class=spodek><div  class=main ><p>To je vše za posledních pár dní. Starší zprávy si mohou zobrazit ti, co mají vyšší roli než <span class=role-js >ty</span>.</div></div>
+
+  </div>
+
+
+
   <script type="text/javascript">
+    var zpravyEl = document.getElementById('zpravy')
+    aktualniCas = new Date()
     function nacteno(http){
       data = http.data
       var nacitani = document.getElementById('nacitani')
       nacitani.style.display = "none"
-      data.forEach(function(e){
+      data.slice().reverse().forEach(function(e){
         if(e["otázka"] != undefined){
           if (e.hasOwnProperty("odkaz na sdílení")){
-            document.body.innerHTML += '<a href="'+e["odkaz na sdílení"]+'"><div class="'+e["hotovo?"]+'"><div class="main"><div class="cas">'+(new Date(e["čas"])).toLocaleDateString()+'</div><div class="top">pošli mi<br>anonymní zprávy!</div><div class="obalTextarea"><div id="text" class="text">'+e["otázka"]+'</div></div></div></div></a>';
+            var datum = new Date(e["čas"])
+            console.log(datum)
+            if (datum.toDateString() === aktualniCas.toDateString()){
+              var cas = "dnes v " + datum.toLocaleTimeString().slice(0, 5);
+            }else{
+              var cas = datum.toLocaleDateString() + " v " + datum.toLocaleTimeString().slice(0, 5)
+            }
+            
+
+            zpravyEl.innerHTML += '<a href="'+e["odkaz na sdílení"]+'"><div class="'+e["hotovo?"]+'"><div class="main"><div class="cas">'+cas+'</div><div class="top">pošli mi<br>anonymní zprávy!</div><div class="obalTextarea"><div id="text" class="text">'+e["otázka"]+'</div></div></div></div></a>';
           }else{
-            document.body.innerHTML += '<div class="'+e["hotovo?"]+'"><div class="main"><div class="cas">'+(new Date(e["čas"])).toLocaleDateString()+'</div><div class="top">pošli mi<br>anonymní zprávy!</div><div class="obalTextarea"><div id="text" class="text">'+e["otázka"]+'</div></div></div></div>';
+            zpravyEl.innerHTML += '<div class="'+e["hotovo?"]+'"><div class="main"><div class="cas">'+(new Date(e["čas"])).toLocaleDateString()+'</div><div class="top">pošli mi<br>anonymní zprávy!</div><div class="obalTextarea"><div id="text" class="text">'+e["otázka"]+'</div></div></div></div>';
           }
         }else{
-          document.body.innerHTML += "<div><p>Prázdná otázka</div>"
+          zpravyEl.innerHTML += "<div><p>Prázdná otázka</div>"
         }
 
       });
       document.body.style.cursor = "default"
-      document.body.innerHTML += "<div class=spodek><div  class=main ><p>Přihlášen jako "+http.jmeno+"<br><button class=tlacitko onclick=odhlas()>odhlásit se</button></div></div>"
+      document.getElementById('nactene').style.display = "block"
+
+      nahrazuj("role",http.prihlaseni.role)
+      nahrazuj("jmeno",http.prihlaseni.jmeno)
+      
 
 
       
@@ -189,8 +233,12 @@
   }
   function chyba(data){
     if (data.typ == "heslo"){
-      location.href = "login.html#chyba"
+      location.href = "/login.html#chyba"
     
+  }else if(data.typ == "nováček"){
+    document.getElementsByTagName('progress')[0].style.display = "none"
+    document.getElementById('textNacitani').innerHTML = data.text
+
   }else{
     alert("chyba při přihlašování")
   }}
@@ -201,7 +249,19 @@
     heslo = localStorage.getItem("heslo");
 
     if (jmeno == null || heslo == null){
-      window.location.href = "login.html";
+      window.location.href = "/login.html";
+    }
+    function nahrazuj(trida,zaCo) {
+      const elements = document.getElementsByClassName(trida + "-js");
+      console.log(elements)
+      // Procházení každého elementu a provádění akce
+      for (let i = 0; i < elements.length; i++) {
+        
+          var element = elements[i];
+          console.log(element)
+          element.innerHTML = zaCo
+
+      }
     }
 
     console.log('<script async src="https://script.google.com/macros/s/AKfycbxnjUYvRqEeID-yShtmGEcB_VEX6NjKisWXXDB-g6Yc2-wcP1teETfK6_ovQJZuBIn7XA/exec?jsonp=nacteno&jmeno='+encodeURIComponent(jmeno)+'&heslo='+encodeURIComponent(heslo)+'">')
