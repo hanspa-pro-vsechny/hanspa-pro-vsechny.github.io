@@ -3,9 +3,12 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>@hanspa.pro.vsechny - NGL link</title>
+	<title>přihlášení na @hanspa.pro.vsechny</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<style>
+		body{
+			overflow:auto;
+		}
 		textarea{
 			height: 2em;
 		}
@@ -114,7 +117,11 @@
 				<div style=display:none id=mailPolicka>
 					<div class=napoveda>E-mail, Instagram nebo WhatsApp:</div>
 					<input id=mail type="text" id=textarea maxlength="40" name="mail" placeholder="honzik.novak75@gmail.com" oninput="if (this.value.length != 0){odeslat.style.display = 'block'}else{odeslat.style.display = 'none'}" >
-				</div>
+
+				
+				<div class=napoveda >Informace o tobě, pro ověření, že nejsi učitel</div>
+				<textarea style="height:3em" id=textarea onfocus="spodek.style.display = 'none'" maxlength="800" name="informace" placeholder="Mám ig @honzik_novak_41 a na hanspa.pro.vsechny mám kamarádku Daru." oninput="this.style.height = (this.scrollHeight) +'px';if (this.value.length != 0){odeslat.style.display = 'block'}else{odeslat.style.display = 'none'}" ></textarea></div>
+
 			</div>
 		</div>
 		<span style="padding:10px;display:inline-block;">🔒 anonymous q&a</span>
@@ -138,7 +145,7 @@
 
 				localStorage.setItem("heslo", document.getElementById('heslo').value);
 				localStorage.setItem("jmeno", document.getElementById('jmeno').value);
-				window.location.href = "ngl.html"
+				window.location.href = "file:///home/honza/Dokumenty/slozka/aaa%20-%20projekty/ngl/ukazka-online.html"
 				
 			}else{
 				nacitat()
