@@ -142,7 +142,7 @@
 		document.getElementById("form").addEventListener("submit", function(event){
 			if(maUcet){
 				event.preventDefault()
-
+				gtag("event", "login");
 				localStorage.setItem("heslo", document.getElementById('heslo').value);
 				localStorage.setItem("jmeno", document.getElementById('jmeno').value);
 				window.location.href = "file:///home/honza/Dokumenty/slozka/aaa%20-%20projekty/ngl/ukazka-online.html"
