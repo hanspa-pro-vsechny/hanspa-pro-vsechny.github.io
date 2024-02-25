@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="utf-8" />
 <title>Nejnovejsi zpravy na hanspa.pro.vsechny</title>
-	<!-- Google tag (gtag.js) -->
+  <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-G5LMS2Y119"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -142,7 +142,7 @@
               left:0;
               width: 100%;
         }
-        .tlacitko{
+        .tlacitko, #textNacitani button{
           width:100%;
           background-color: black;
           border-radius:100px;
@@ -153,6 +153,10 @@
           outline:none;
           padding:15px;
           cursor:pointer;
+        }
+        #textNacitani button{
+          display:inline-block;
+          width:auto;
         }
         body{
           cursor: wait;
@@ -271,9 +275,12 @@
     if (data.typ == "heslo"){
       location.href = "login.html#chyba"
     
-  }else if(data.typ == "nováček"){
+  }else if(data.typ == "nováček" || data.typ == "ban"){
     document.getElementsByTagName('progress')[0].style.display = "none"
     document.getElementById('textNacitani').innerHTML = data.text
+    if(data.typ == "ban"){
+      document.body.style.background = "#7a1d0c"
+    }
 
   }else{
     alert("chyba při přihlašování")
@@ -285,7 +292,7 @@
     heslo = localStorage.getItem("heslo");
 
     if (jmeno == null || heslo == null){
-      window.location.href = "file:///home/honza/Dokumenty/slozka/aaa%20-%20projekty/ngl/login.html";
+      window.location.href = "login.html";
     }
     function nahrazuj(trida,zaCo) {
       const elements = document.getElementsByClassName(trida + "-js");
