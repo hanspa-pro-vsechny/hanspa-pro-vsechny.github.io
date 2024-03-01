@@ -204,7 +204,7 @@
 
     <div id="zpravy"></div>
 
-    <div class=spodek><div  class=main ><p>To je vše za posledních pár dní. Starší zprávy si mohou zobrazit ti, co mají vyšší roli než <span class=role-js >ty</span>.</div></div>
+    <div class=spodek><div  class=main ><p>To je vše za posledních pár dní. Starší zprávy si mohou zobrazit ti, co mají vyšší roli než <span class=role-js >ty</span>.<br><button onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" class=tlacitko>nahoru</button></div></div>
 
   </div>
 
@@ -219,19 +219,21 @@
       nacitani.style.display = "none"
       data.slice().reverse().forEach(function(e){
         if(e["otázka"] != undefined){
+          var datum = new Date(e["čas"])
+          console.log(datum.toDateString())
+          var vcera = new Date()
+          vcera.setDate(aktualniCas.getDate() - 1)
+          if (datum.toDateString() === aktualniCas.toDateString()){
+            var cas = "dnes v " + datum.toLocaleTimeString().slice(0, 5);
+          }else if(datum.toDateString() === vcera.toDateString()){
+            var cas = "včera v " + datum.toLocaleTimeString().slice(0, 5);
+          }else{
+            var cas = datum.toLocaleDateString() + " v " + datum.toLocaleTimeString().slice(0, 5)
+          }
           if (e.hasOwnProperty("odkaz na sdílení")){
-            var datum = new Date(e["čas"])
-            console.log(datum)
-            if (datum.toDateString() === aktualniCas.toDateString()){
-              var cas = "dnes v " + datum.toLocaleTimeString().slice(0, 5);
-            }else{
-              var cas = datum.toLocaleDateString() + " v " + datum.toLocaleTimeString().slice(0, 5)
-            }
-            
-
             zpravyEl.innerHTML += '<a href="'+e["odkaz na sdílení"]+'"><div class="'+e["hotovo?"]+'"><div class="main"><div class="cas">'+cas+'</div><div class="top">pošli mi<br>anonymní zprávy!</div><div class="obalTextarea"><div id="text" class="text">'+e["otázka"]+'</div></div></div></div></a>';
           }else{
-            zpravyEl.innerHTML += '<div class="'+e["hotovo?"]+'"><div class="main"><div class="cas">'+(new Date(e["čas"])).toLocaleDateString()+'</div><div class="top">pošli mi<br>anonymní zprávy!</div><div class="obalTextarea"><div id="text" class="text">'+e["otázka"]+'</div></div></div></div>';
+            zpravyEl.innerHTML += '<div class="'+e["hotovo?"]+'"><div class="main"><div class="cas">'+cas+'</div><div class="top">pošli mi<br>anonymní zprávy!</div><div class="obalTextarea"><div id="text" class="text">'+e["otázka"]+'</div></div></div></div>';
           }
         }else{
           zpravyEl.innerHTML += "<div><p>Prázdná otázka</div>"
