@@ -17,13 +17,13 @@
     {
       "src": "/images/screenshot1.png",
       "type": "image/png",
-      "sizes": "any",
+      "sizes": "674x627",
       "form_factor": "narrow"
     },
     {
       "src": "/images/screenshot2.png",
       "type": "image/jpg",
-      "sizes": "any",
+      "sizes": "1477x734",
       "form_factor": "wide"
     }
   ]
