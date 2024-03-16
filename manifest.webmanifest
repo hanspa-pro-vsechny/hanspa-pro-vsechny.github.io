@@ -12,7 +12,7 @@
   "start_url": "/index.html",
   "display": "standalone",
   "theme_color": "#f54951",
-  "background_color": "#f54951"
+  "background_color": "#f54951",
    "screenshots": [
     {
       "src": "/images/screenshot1.png",
