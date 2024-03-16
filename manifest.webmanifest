@@ -22,7 +22,7 @@
     },
     {
       "src": "/images/screenshot2.png",
-      "type": "image/jpg",
+      "type": "image/png",
       "sizes": "1477x734",
       "form_factor": "wide"
     }
