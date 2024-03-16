@@ -4,9 +4,9 @@
   "description": "Ngl link hanspa.pro.vsechny.",
   "icons": [
     {
-      "src": "logo.svg",
-      "sizes": "any",
-      "type": "image/svg"
+      "src": "images/app-logo.png",
+      "sizes": "461x461",
+      "type": "image/png"
     }
   ],
   "start_url": "/index.html",
