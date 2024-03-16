@@ -2,6 +2,7 @@
   "name": "hanspa.pro.vsechny",
   "short_name": "hanpsa",
   "description": "Ngl link hanspa.pro.vsechny.",
+  "id":"hanspa.pro.vsechny",
   "icons": [
     {
       "src": "images/app-logo-kruh.png",
