@@ -3,6 +3,8 @@
 <meta charset="utf-8" />
 <link rel="manifest" href="manifest.webmanifest" />
 <title>Nejnovejsi zpravy na hanspa.pro.vsechny</title>
+<meta name="theme-color" content="#f13168">
+
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-G5LMS2Y119"></script>
 <script>
@@ -235,8 +237,13 @@
 
 
   <script type="text/javascript">
+const themeColor = document.querySelector('meta[name="theme-color"]')
+
     var zpravyEl = document.getElementById('zpravy')
     aktualniCas = new Date()
+
+
+
     function nacteno(http){
       data = http.data
       var nacitani = document.getElementById('nacitani')
@@ -289,6 +296,8 @@
         document.getElementById("prepinatNeverejne").style.display = "block"
 
       }
+
+      themeColor.setAttribute('content', "#000000")
       
 
 
@@ -296,7 +305,7 @@
 
     
 
-}
+}//načteno - konec
   function odhlas(){
     localStorage.removeItem("heslo");
     localStorage.removeItem("jmeno");
