@@ -159,7 +159,7 @@
 		let jmenoPolicko = document.getElementById("jmeno")
 		function kontrola(){
 			if(kontrolaJmen.nactena && !maUcet){
-				kontrolaJmen.odeslat = !kontrolaJmen.jmena.includes(jmenoPolicko.value)
+				kontrolaJmen.odeslat = !kontrolaJmen.jmena.includes(upravitText(jmenoPolicko.value))
 				
 				odeslat.style.display = "none"
 				
@@ -259,6 +259,16 @@
 		</div>
 	</div>
 `;
+		function upravitText(text) {
+		  text = text.toString()
+		  // Odstranění háčků a čárek
+		  var bezDiakritiky = text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+		  
+		  // Převod na malá písmena
+		  var malaPismena = bezDiakritiky.toLowerCase();
+		  
+		  return malaPismena.trim();
+		}
 	</script>
 
 
