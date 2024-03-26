@@ -2,6 +2,7 @@
 <html onload="textarea.value=''">
 <head>
 	<link rel="manifest" href="manifest.webmanifest" />
+	
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>přihlášení na @hanspa.pro.vsechny</title>
@@ -121,14 +122,15 @@
 				<strong>Přihlášení k zobrazení zpráv.</strong></div>
 			<div class="obalTextarea">
 				<div class=napoveda>Jméno:</div>
-				<input id=jmeno name=jmeno maxlength="40"  placeholder="Jan Novák" oninput="if (this.value.length != 0){odeslat.style.display = 'block'}else{odeslat.style.display = 'none'}" >
+				<input id=jmeno name=jmeno maxlength="40"  placeholder="Jan Novák" oninput="kontrola();if (this.value.length != 0 && kontrolaJmen.odeslat){odeslat.style.display = 'block'}else{odeslat.style.display = 'none'}" >
+				<div style="color:red;display:none" id=upozorneniJmeno>Toto jméno už někdo používá.</div>
 				<div class=napoveda>Heslo:</div>
-				<input id=heslo type="password" id=textarea maxlength="20" name="heslo" placeholder="heslo145" oninput="if (this.value.length != 0){odeslat.style.display = 'block'}else{odeslat.style.display = 'none'}" >
+				<input id=heslo type="password" id=textarea maxlength="20" name="heslo" placeholder="heslo145" oninput="if (this.value.length != 0 && kontrolaJmen.odeslat){odeslat.style.display = 'block'}else{odeslat.style.display = 'none'}" >
 				<div style=display:none id=mailPolicka>
 					<div class=napoveda>E-mail nebo Whatsapp:</div>
-					<input id=mail type="text" id=textarea maxlength="40" name="mail" placeholder="honzik.novak75@gmail.com" oninput="if (this.value.length != 0){odeslat.style.display = 'block'}else{odeslat.style.display = 'none'}" >				
+					<input id=mail type="text" id=textarea maxlength="40" name="mail" placeholder="honzik.novak75@gmail.com" oninput="if (this.value.length != 0 && kontrolaJmen.odeslat){odeslat.style.display = 'block'}else{odeslat.style.display = 'none'}" >				
 				<div class=napoveda >Informace o tobě, pro ověření, že nejsi učitel (třída, IG, kamarádi co mají IG nebo účet tady atd) </div>
-				<textarea style="height:3em" id=textarea onfocus="spodek.style.display = 'none'" maxlength="800" name="informace" placeholder="Mám ig @honzik_novak_41 a na hanspa.pro.vsechny mám kamaráda Frantu." oninput="this.style.height = (this.scrollHeight) +'px';if (this.value.length != 0){odeslat.style.display = 'block'}else{odeslat.style.display = 'none'}" ></textarea></div>
+				<textarea style="height:3em" id=textarea onfocus="spodek.style.display = 'none'" maxlength="800" name="informace" placeholder="Mám ig @honzik_novak_41 a na hanspa.pro.vsechny mám kamaráda Frantu." oninput="this.style.height = (this.scrollHeight) +'px';if (this.value.length != 0 && kontrolaJmen.odeslat){odeslat.style.display = 'block'}else{odeslat.style.display = 'none'}" ></textarea></div>
 
 			</div>
 		</div>
@@ -139,6 +141,45 @@
 	</form>
 
 	<script>
+		kontrolaJmen = {
+			jmena:[],
+			nactena:false,
+			odeslat:true,
+			upozorneni:document.getElementById("upozorneniJmeno")
+		}
+
+		
+
+		function nactenyPrvniData(data){
+			kontrolaJmen.jmena = data.jmena;
+			kontrolaJmen.nactena = true
+			console.log("nacteno")
+
+		}
+		let jmenoPolicko = document.getElementById("jmeno")
+		function kontrola(){
+			if(kontrolaJmen.nactena && !maUcet){
+				kontrolaJmen.odeslat = !kontrolaJmen.jmena.includes(jmenoPolicko.value)
+				
+				odeslat.style.display = "none"
+				
+			}else{
+				kontrolaJmen.odeslat = true
+				
+				
+			}
+
+			if(kontrolaJmen.odeslat){
+				kontrolaJmen.upozorneni.style.display = "none"
+				jmenoPolicko.style.color = "black"
+			}else{
+				kontrolaJmen.upozorneni.style.display = "block"
+				jmenoPolicko.style.color = "red"
+			}
+			console.log("kontrola",kontrolaJmen.odeslat)
+		}
+
+
 		console.log(location.hash)
 		if (location.hash=="#chyba"){
 			localStorage.removeItem("heslo");
@@ -184,6 +225,8 @@
 				document.getElementById("form").setAttribute("action","https://script.google.com/macros/s/AKfycbxnjUYvRqEeID-yShtmGEcB_VEX6NjKisWXXDB-g6Yc2-wcP1teETfK6_ovQJZuBIn7XA/exec")
 			}
 
+			kontrola()
+
 		}
 		function nacitat(){
 			console.log("nacitani")
@@ -220,7 +263,7 @@
 
 
 	<iframe style="width:0;height:0;outline:0;border:0" onload="nacteno()" id="odeslat" name="odeslat" src="about:blank"></iframe>
-
+	<script defer src="https://script.google.com/macros/s/AKfycbxnjUYvRqEeID-yShtmGEcB_VEX6NjKisWXXDB-g6Yc2-wcP1teETfK6_ovQJZuBIn7XA/exec?zakladniLoginData"></script>
 
 
 
