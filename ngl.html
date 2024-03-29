@@ -194,6 +194,24 @@
         }
 
 
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .button-container a {
+            flex-grow: 1;
+        }
+
+        .button-container a button {
+            width: 100%;
+            display: block;
+            margin-bottom: 5px; /* Optional: Add some space between buttons */
+        }
+        hr{
+          border-color:black;
+        }
+
   
 </style>
 <body>
@@ -212,17 +230,21 @@
   </div>
   </div>
   <div id="nactene">
+
     <div class=spodek><div  class=main ><img style=height:5em;margin:auto; src="logo.svg"><br><p>Přihlášen jako <span class="jmeno-js"></span><br>
       <button class=tlacitko onclick=odhlas()>🚪 odhlásit se</button>
 
       <a href="napsat.html?utm_source=ukazka_online&utm_medium=web&utm_campaign=tlacitkoNAHO%C5%98E" >
         <button class=tlacitko >📝 napsat anonymní zprávu</button>
-      <a/>
-      
+      </a>
+      <hr>
       <a href="notifikace.html?utm_source=ukazka_online&utm_medium=web&utm_campaign=tlacitkoNAHO%C5%98E" >
         <button class=tlacitko >🔔 nastavit notifikace</button>
-      <a/>
-
+      </a>
+      <a href="heslo.html?utm_source=ukazka_online&utm_medium=web&utm_campaign=tlacitkoNAHO%C5%98E" >
+        <button class=tlacitko >🔐 změnit heslo</button>
+      </a>
+      
       <p>nejnovější zprávy jsou nahoře.
 
       <button style=display:none onclick="zpravyEl.classList.toggle('pouzeNeVerejne')" id=prepinatNeverejne class="tlacitko">🛠 zobrazit pouze neveřejné</button></div></div>
