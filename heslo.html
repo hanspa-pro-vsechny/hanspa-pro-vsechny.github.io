@@ -120,7 +120,11 @@
 
 		
 	</form>
-
+	<div style="width:100%" id="bottom">
+		<div class="main" >
+			<a href="index.html" ><button class="tlacitko2"><b>❌ zrušit změnu</b></button></a>
+		</div>
+	</div>
 	<script>
 		document.getElementById("form").addEventListener("submit", function(event){
 				event.preventDefault()
@@ -156,7 +160,16 @@
 
 			
 		}
+		function chyba(data){
+			if(data.typ == "prihlaseni"){
+				alert("Do horního políčka zadej svoje aktuální heslo.\nNové heslo napiš do políčka dole.")
+			}else{
+				alert("Při změně hesla nastala chyba.")
+			}
+			nacitani = false
+			odeslat.innerHTML = "zkusit znovu změnit heslo"
 
+		}
 		function nactiScript(src){
 			var script = document.createElement('script');
 			script.src = src;
