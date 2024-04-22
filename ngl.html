@@ -28,7 +28,7 @@
     .cas{margin:10px;color:white}
     html,body{
       background:black !important;
-      font-size:1.3em;
+      font-size:1.2em;
       font-family: sans-serif;
       font-weight: bold;
       font-weight: 800;
@@ -48,7 +48,7 @@
         .obalTextarea{
               background-color: rgba(255,255,255,1);
               width:100%;
-              min-height:100px;
+              min-height:4em;
               border-bottom-left-radius:30px;
               border-bottom-right-radius:30px;
               padding:1em;        }
@@ -84,6 +84,8 @@
         }
         .text{
           margin:0 1em ;
+          height:100%;
+          vertical-align: middle;
         }
         body{
               overflow: auto;
@@ -181,7 +183,7 @@
           background-color:whitesmoke;
           /*outline:2em solid whitesmoke;*/
           padding:1em;
-          width:19em;
+          width:25rem;
           background-color: rgba(255,255,255,0.4);
           border-radius: 30px;
         }
@@ -212,6 +214,11 @@
           border-color:black;
         }
 
+        .cas a {
+            color: cyan;
+            text-decoration: underline;
+            font-size: 0.7em;
+        }
   
 </style>
 <body>
@@ -292,7 +299,7 @@ const themeColor = document.querySelector('meta[name="theme-color"]')
           if (e.hasOwnProperty("odkaz na sdílení")){
             zpravyEl.innerHTML += '<a href="'+e["odkaz na sdílení"]+'"><div class="'+e["hotovo?"]+'"><div class="main"><div class="cas">'+cas+'</div><div class="top">pošli mi<br>anonymní zprávy!</div><div class="obalTextarea"><div id="text" class="text">'+e["otázka"]+'</div></div></div></div></a>';
           }else{
-            zpravyEl.innerHTML += '<div class="'+e["hotovo?"]+'"><div class="main"><div class="cas">'+cas+'</div><div class="top">pošli mi<br>anonymní zprávy!</div><div class="obalTextarea"><div id="text" class="text">'+e["otázka"]+'</div></div></div></div>';
+            zpravyEl.innerHTML += '<div class="'+e["hotovo?"]+'"><div class="main"><div class="cas">'+cas+'<div><a target=_blank href="https://docs.google.com/forms/d/e/1FAIpQLSdXZ-Pitmcz0MaVR1t1jgxVZMlpv5tH_ykEh_C4MUwh1Sc8Uw/viewform?usp=pp_url&entry.632061677='+ encodeURIComponent(e["otázka"]) +'" >nahlásit</a></div></div><div class="top">pošli mi<br>anonymní zprávy!</div><div class="obalTextarea"><div id="text" class="text">'+e["otázka"]+'</div></div></div></div>';
           }
         }else{
           zpravyEl.innerHTML += "<div><p>Prázdná otázka</div>"
@@ -341,6 +348,7 @@ const themeColor = document.querySelector('meta[name="theme-color"]')
   }else if(data.typ == "nováček" || data.typ == "ban"){
     document.getElementsByTagName('progress')[0].style.display = "none"
     document.getElementById('textNacitani').innerHTML = data.text
+    document.getElementById('textNacitani').style.fontSize = "1.7rem"
     if(data.typ == "ban"){
       document.body.style.background = "#7a1d0c"
     }
