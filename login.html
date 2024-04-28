@@ -19,6 +19,8 @@
 	<style>
 		body{
 			overflow:auto;
+			padding:0;
+			margin:0;
 		}
 		textarea{
 			height: 2em;
@@ -93,6 +95,44 @@
 						background-position:  100vh 0;
 					}
 				}
+
+				.prekryti{
+					height:100vh;
+					width:100vw;
+					position:fixed;
+					background-color:rgba(0, 0, 0, 0.30);
+					margin:0;
+					padding:0;
+					z-index:10;
+					top:0;
+					left:0;
+					backdrop-filter: blur(7px);
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					
+
+				}
+
+				.alert{
+					border:10px solid black;
+		        	padding:10px;
+		        	padding-right:30px;
+					display:block;
+			    	width: 400px;
+			    	max-width:90vw;
+			    	/*height: 200px;*/
+					/*border: 10px solid blue;*/
+					border-radius: 10px;
+					color:black;
+					background-color: white;
+					transition: border-radius .2s;
+					outline:1px solid white;
+				}
+
+				.ne-posun {
+				  overflow: hidden; /* Hide scrollbars */
+				}
 	</style>
 	 <link rel="icon" type="image/x-icon" href="/logo.svg">
 </head>
@@ -125,13 +165,13 @@
 				<input id=jmeno name=jmeno maxlength="40"  placeholder="Jan Novák" oninput="kontrola();if (this.value.length != 0 && kontrolaJmen.odeslat){odeslat.style.display = 'block'}else{odeslat.style.display = 'none'}" >
 				<div style="color:red;display:none" id=upozorneniJmeno>Toto jméno už někdo používá.</div>
 				<div class=napoveda>Heslo:</div>
-				<input id=heslo type="password" id=textarea maxlength="20" name="heslo" placeholder="heslo145" oninput="if (this.value.length != 0 && kontrolaJmen.odeslat){odeslat.style.display = 'block'}else{odeslat.style.display = 'none'}" >
+				<input id=heslo type="password"  maxlength="20" name="heslo" placeholder="heslo145" oninput="if (this.value.length != 0 && kontrolaJmen.odeslat){odeslat.style.display = 'block'}else{odeslat.style.display = 'none'}" >
 				<div style=display:none id=mailPolicka>
 					<div class=napoveda>E-mail nebo Whatsapp:</div>
-					<input id=mail type="text" id=textarea maxlength="40" name="mail" placeholder="honzik.novak75@gmail.com" oninput="if (this.value.length != 0 && kontrolaJmen.odeslat){odeslat.style.display = 'block'}else{odeslat.style.display = 'none'}" >				
+					<input id=mail type="text"  maxlength="40" name="mail" placeholder="honzik.novak75@gmail.com" oninput="if (this.value.length != 0 && kontrolaJmen.odeslat){odeslat.style.display = 'block'}else{odeslat.style.display = 'none'}" >				
 				<div class=napoveda >Informace o tobě, ověření, že nejsi učitel (třída, IG, kamarádi co mají IG nebo účet tady, <b>cokoliv</b>) </div>
-				<textarea style="height:3em" id=textarea onfocus="spodek.style.display = 'none'" maxlength="800" name="informace" placeholder="Mám ig @honzik_novak_41 a na hanspa.pro.vsechny mám kamaráda Frantu." oninput="this.style.height = (this.scrollHeight) +'px';if (this.value.length != 0 && kontrolaJmen.odeslat){odeslat.style.display = 'block'}else{odeslat.style.display = 'none'}" ></textarea></div>
-
+				<textarea style="height:3em" id=textarea onfocus="spodek.style.display = 'none'" maxlength="800" name="informace" placeholder="Mám ig @honzik_novak_41 a na hanspa.pro.vsechny mám kamaráda Frantu." oninput="this.style.height = (this.scrollHeight) +'px';if (this.value.length != 0 && kontrolaJmen.odeslat){odeslat.style.display = 'block'}else{odeslat.style.display = 'none'};jeTamKod()" ></textarea></div>
+				<input id=kodInput type=hidden name=kod >
 			</div>
 		</div>
 		<span style="padding:10px;display:inline-block;">🔒 anonymous q&a</span>
@@ -139,7 +179,17 @@
 
 		
 	</form>
+			<div id=alert-pozadi class="prekryti" style="display:none">
+				
+				<div class="alert">
+					<h2>snažíš se použít kód, pokud ho potvrdíš, tak políčko už nemusíš vyplňovat.</h2>
+						<input id=kod style="padding:2px;display: inline-block;border:1px solid black;font-size: 1.2em;font-family: monospace;" value="vionav-25-97">
+					<button class=tlacitko onclick=pouzitKod() >✅ použít</button>
+					<button class=tlacitko onclick="zrusitKod()">❌ zrušit</button>
+				</div>
 
+
+			</div>
 	<script>
 		kontrolaJmen = {
 			jmena:[],
@@ -182,7 +232,7 @@
 
 		console.log(location.hash)
 		if (location.hash=="#chyba"){
-			localStorage.removeItem("heslo");
+			localStorage.remove("heslo");
 			document.getElementById("jmeno").value = localStorage.getItem("jmeno")
 		}
 
@@ -228,6 +278,34 @@
 			kontrola()
 
 		}
+		const informacePolicko = document.getElementById('textarea');
+		var found
+		function jeTamKod(){
+			const paragraph = informacePolicko.value;
+			const regex = /[A-Za-z]{3,10}-[0-9]{2}-[0-9]{2}/i;
+			found = paragraph.match(regex);
+			if (found != null){
+				document.getElementById('kod').value = found[0]
+				document.getElementById("alert-pozadi").style.display = "flex"
+				document.body.classList.add("ne-posun")
+			}
+			console.log(found);
+		}
+
+		function zrusitKod(){
+			informacePolicko.value = informacePolicko.value.replace(found[0],"")
+			document.getElementById("alert-pozadi").style.display = "none"
+			document.body.classList.remove("ne-posun")
+		}
+
+		function pouzitKod(){
+			document.getElementById('kodInput').value = document.getElementById("kod").value
+			document.body.classList.remove("ne-posun")
+			document.getElementById("alert-pozadi").style.display = "none"
+
+
+		}
+
 		function nacitat(){
 			console.log("nacitani")
 			nacitani = true
@@ -238,7 +316,16 @@
 
 		function nacteno() {
 			if(nacitani){
-				document.body.innerHTML = noveHTML
+				if (kod != ""){
+					event.preventDefault()
+					gtag("event", "login");
+					localStorage.setItem("heslo", document.getElementById('heslo').value);
+					localStorage.setItem("jmeno", document.getElementById('jmeno').value);
+					window.location.href = "ngl.html"
+				}else{
+					document.body.innerHTML = noveHTML
+				}
+				
 
 			}
 		}
