@@ -104,13 +104,13 @@
 
 	</script>
 <div class=tlacitka>
-	<button id="captureBtn" ><img class=img src=https://upload.wikimedia.org/wikipedia/commons/2/24/Circle-icons-image.svg alt=vyfotit!></button>
+	<button id="captureBtn" ><img class=img src=https://upload.wikimedia.org/wikipedia/commons/2/24/Circle-icons-image.svg alt="ulozit screanshoot!"></button>
 	<button onclick="openFullscreen();this.parentElement.style.display = 'none'" >hotovo</button>
 </div>
 <div id=content  >
 	<div class=main>
 		<div class="top">
-			pošli mi<br>anonymní zprávy!
+			pošli nám<br>anonymní <span id=horni_text >zprávy</span>!
 		</div>
 		<div class="obalTextarea"><div id=text class="text">štve mě ta řada na raráška</div></div>
 	</div>
@@ -123,6 +123,10 @@
 </script>
 
 <script>
+	var horniTextElem = document.getElementById("horni_text");
+	const moznostiHornihoTextu = ["zprávy","hroty","zprávy","přiznání","drby","zprávy","hroty"]
+	horniTextElem.innerHTML = moznostiHornihoTextu[Math.floor(Math.random()*moznostiHornihoTextu.length)];
+
 const captureBtn = document.getElementById('captureBtn');
 
 captureBtn.addEventListener('click', () => {
