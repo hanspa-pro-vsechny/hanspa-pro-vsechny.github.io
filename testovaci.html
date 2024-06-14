@@ -1,282 +1,295 @@
 <!DOCTYPE html>
 <html onload="textarea.value=''">
 <head>
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G5LMS2Y119"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-G5LMS2Y119');
+</script>
+
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>nastavení notifikací.</title>
-		<!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-G5LMS2Y119"></script>
-	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
-
-	  gtag('config', 'G-G5LMS2Y119');
-	</script>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>@hanspa.pro.vsechny - NGL link</title>
 	<style>
-		.navigace{
-			width: 24px;
-			aspect-ratio: auto 24 / 24;
-			height: 24px;
-			float:left;
-			cursor:pointer;
-		}
-		body{
-			overflow:auto;
-		}
-		textarea{
-			height: 2em;
-		}
-		.napoveda{
-			color:black;
-			font-size: 1.5em;
-			text-align: left;
-			margin:.3em 0;
-			border-bottom: 2px solid black;
-		}
-		header{
-		      background: #EC1187 linear-gradient(to bottom right, #EC1187 0%, #FF8D10 100%);
-		      text-align: center;
-		      position:absolute;
-		      top:0;
-		      left:0;
-		      width: 100%;
-		}
-				input{
+				body {
+				  overflow: hidden; /* Hide scrollbars */
+				}
+				html {
+		    		background: #EC1187 linear-gradient(to bottom right, #EC1187 0%, #FF8D10 100%);
+		    		background-repeat: no-repeat;
+		    		width: 100vw;
+		    		height: 100vh;
+		    		height: -webkit-fill-available;
+		    		color:white;
+		    		font-family: sans-serif;
+		    		text-align: center;
+		    		font-size: 15px;
+				}
+				.main{
+					width: calc(85% - 20px);
+					max-width: 620px;
+					margin: 44px auto;
+				}
+				.policko{
+				}
+				.obalTextarea{
+					    background-color: rgba(255,255,255,0.4);
+					    width:100%;
+					    min-height:100px;
+					    border-bottom-left-radius:30px;
+					    border-bottom-right-radius:30px;
+					    padding:20px;
+				}
+				textarea{
 					width:100%;
 					margin:0;
 		  background: transparent;
-					
+					padding:0;
 					font-family: sans-serif;
 					font-size:1.3rem;
 					outline:0;
 					height:100%;
-					
+					resize: vertical;
 					  font-weight: bold;
 					  border:none;
-					  
+					  height:80px;
 
 
 
 				}
-				.vybrano{
-					outline:2px solid blue;
+				.top{
+					color:black;
+					background-color:white;
+					width:100%;
+					border-top-left-radius:30px;
+					border-top-right-radius:30px;
+					padding:20px;
+					text-align:left;
 
 				}
-
-				.vybrano::before{
-					content:"✅";
-					margin-right:1em;
-				}
-				#x-chyba{
-					display:none;
-					border-radius: 30px;
-					padding:10px;
-					font-size:2em;
-					background-color:red;
-					border:2px solid black;
-				}
-				#chyba{
-					display:none;
-				}
-				#chyba button{
-					background-color:#ad1010;
-					animation: animate-shake 2s ease-in-out infinite,chyba 5s ease-in-out infinite alternate;
-					background: linear-gradient(90deg, rgba(173,16,16,1) 0%, rgba(173,16,16,1) 50%, rgba(0,0,0,1) 50%, rgba(0,0,0,1) 100%);
-				}
-				#chyba:target{
-					display: block;
+				.logo{
+					height:2.5em;
+					float:left;
+					padding-right:10px;
 
 				}
-				@keyframes chyba{
+				button{
+					width:100%;
+					background-color: black;
+					border-radius:100px;
+					margin:10px;
+					color:white;
+					font-size:1.2rem;
+					border:none;
+					outline:none;
+					padding:15px;
+					cursor:pointer;
+				}
+				#bottom{
+					position:absolute;
+					bottom:20px;
+					padding:0;
+					margin:0;
+				}
+
+				@keyframes animate-shake {
+				    0%,
+				    10%,
+				    65%,
+				    100% {
+				      transform: rotate(0deg) scale(1.0);
+				    }
+				  
+				    30%,
+				    40% {
+				      transform: rotate(-1deg) scale(1.05);
+				    }
+				  
+				    35%,
+				    45% {
+				      transform: rotate(1deg) scale(1.05);
+				    }
+				}
+				.tlacitko2{
+					background: rgba(255,255,255,0.5);
+					color: black;
+					width: auto;
+					    height: 48px;
+					    font-size: 15px;
+					    padding: 0 24px 1px;
+				}
+				.navigace{
+					width: 24px;
+					aspect-ratio: auto 24 / 24;
+					height: 24px;
+					float:left;
+					cursor:pointer;
+				}
+				.odkaz{
+					text-decoration: none;
+					border-bottom:2px solid white;
+					color:white;
+					font-size: 1.1em;
+					font-weight: bold;
+				}
+				.nacitani{
+					height:1.1em;
+					animation:nacitani 1s infinite linear;
+
+				}
+				@keyframes nacitani{
 					from{
-						
-						background-position: 0 0;
+						transform:rotate(0);
 					}
 					to{
-						background-position:  100vh 0;
+						transform:rotate(360deg);
 					}
 				}
+						html {
+						  box-sizing: border-box;
+						}
+						*, *:before, *:after {
+						  box-sizing: inherit;
+						}
+						html, body {margin: 0; height: 100%; overflow: hidden}
 
-				.obalTextarea p{
-					color:black;
-					font-size:1.5em;
-				}
+						.imgbb-button{
+							background-color:black !important;
+							font-size:1.1em !important;
+							border-radius: 1em !important;
+							color:white !important
+						}
+						#obrazek{
+							max-width: 100%;
+							display: none;
+						}
 
-				.wa-zprava *{
-					background:#e1ffc7;
-					padding:.3em;
-					display:inline-block;
-					max-width:70%;
-					border-radius: 5px;
-
-				}
-				.wa-zprava{
-					text-align: right;
-				}
-
+					
 
 	</style>
-	 <link rel="icon" type="image/x-icon" href="/logo.svg">
+	<script>
+		function getRandomInt(min, max) {
+		    min = Math.ceil(min);
+		    max = Math.floor(max);
+		    return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+	</script>
 </head>
 <body>
-	<header>
-	  <img style=height:5em src="logo.svg">
-
-
-	</header>
-
-	<div style="height:5em"></div>
-	<div class=main>
-		<div class="policko">
-			<div class="top">
-				<img class=logo src="logo.svg" >
-				ngl-share<br>
-				<strong>Nastavení notifikací.</strong>
-			</div>
-			<div class="obalTextarea">
-				<button onclick=vybrat(this) id=presWA class=vybrano>Přes WhatsApp</button>
-				<button id=presGmail onclick=vybrat(this)>Přes gmail</button>
-				<button id=presApp onclick=vybrat(this)>Přes aplikaci (pouze Android)</button>
-				<hr>
-				<button id=zrusit onclick=vybrat(this)>❌ Zrušit notifikace</button>
-			</div>
-		</div>
-	</div>
-	<form data-target="odeslat"  action=about:blank x-action="https://script.google.com/macros/s/AKfycbxnjUYvRqEeID-yShtmGEcB_VEX6NjKisWXXDB-g6Yc2-wcP1teETfK6_ovQJZuBIn7XA/exec" id="form" data-target="odeslat"  class=main>
-		<input type=hidden value=registrace name=registrace >
+	<img src="https://i.ibb.co/84CzQKn/nacitani-1.png" style="display:none">
+	<form id="form" onsubmit="nacitat()" data-target="odeslat" action="https://script.google.com/macros/s/AKfycbwTqS0vzNNJV7bCS37qe1Ezoj_Gl0VHO7VAtMmwCDufWiQSfp9HIxU2aBbL7bej3Weg/exec" class=main>
 		<div class="policko">
 			<div class="top">
 				<img class=logo src="https://firebasestorage.googleapis.com/v0/b/ask-fun-d10f0.appspot.com/o/images%2F7A9A8BC1-04E9-4B52-8188-EC2DB41C0AC2.jpg?alt=media&token=1d38ec7a-abc7-449e-a83e-4405378fc214" >
 				@hanspa.pro.vsechny<br>
-				<strong>Přihlášení k zobrazení zpráv.</strong></div>
+				<strong>pošli mi anonymní zprávy!</strong></div>
 			<div class="obalTextarea">
-				<div  id=presWA-navod>
-					<p>Otevři WhatsApp a na číslo <a target="_blank" href="https://wa.me/34621343403?text=I allow callmebot to send me messages">+34 621 34 34 03</a> napiš
-					<div class="wa-zprava">
-						<p onclick="navigator.clipboard.writeText(this.innerText);">I allow callmebot to send me messages</p>
-					</div>
-					<p>Za chvíli ti přijde nějaká zpráva. Tu překopíruj sem:</p>
-					<div style=text-align:left class="wa-zprava">
-						<textarea id=WAtextarea style=height:15em;background-color:white; placeholder="CallMeBot API Activated for 420123456789&#10;Your apikey is: 789456&#10;&#10;You can now send messages using the API.&#10;https://api.callmebot.com/whatsapp.php?phone=420123456789&text=This+is+a+test&apikey=789456&#10;&#10;Send Stop to pause the Bot.&#10;Send Resume to enable it again."></textarea>
-					</div>
-					<p>Toto číslo není naše a psaním na něj se nic nestane, pokud chceš zrušit posílání zpráv, tak nám napiš na hanspa.pro.vsechny@gmail.com <span id=tajne >nebo na <a href=https://wa.me/721123785 >721 123 785</a> .</span>
-				</div>
-				<div style=display:none id=presGmail-navod>
-					<p>Pokud chceš posílat notifikace na mail, tak pouze klikni na odeslat.
-				</div>
-				<div style=display:none id=presApp-navod>
-					<p>Stáhni si aplikaci <a target="_blank" href=https://play.google.com/store/apps/details?id=net.xdroid.pn&hl=cs&gl=US><b><img style="height:1em" src="https://play-lh.googleusercontent.com/7XFPCkynoF3el2hZ765m3F5_RrPlyO0Eexj0Bo8giVyEhCSAzxr3tu62ElaQG8ROPGo=w240-h480-rw"> Push Notify API - NotifyDroid
-</b>.</a> Potom ti aplikace vygeneruje kód, který napiš sem:</p>
-					<input id=appInput placeholder="bk-45876456as" style="text-align:center;border:2px solid black;padding:.3em">
+				<textarea id=textarea onfocus="spodek.style.display = 'none'" maxlength="300" name="otazka" placeholder="send me anonymous messages..." oninput="this.style.height = (this.scrollHeight) +'px';if (this.value.length != 0){odeslat.style.display = 'block'}else{odeslat.style.display = 'none'}" ></textarea>
 
-				</div>
-				<div style=display:none id=zrusit-navod>
-					<p>Napiš sem jaké notifikace chceš zrušit:</p>
-					<textarea id=zrusitTextarea style=height:7em placeholder="WhatsApp na čísle +420 123 456 789 a aplikaci s kodem bk-45876456as"></textarea>
-				</div>
-
-
+				<input id=imageUrl name=obrazek type=hidden>
+				<img id=obrazek >
 			</div>
 		</div>
 		<span style="padding:10px;display:inline-block;">🔒 anonymous q&a</span>
-		<button id=odeslat><strong>odeslat!</strong></button>
+		<button style="display:none;" id=odeslat><strong>Sent!</strong></button>
 
 		
 	</form>
 
+	<div style="width:100%" id="bottom">
+		<div class="main" >
+			<strong style="font-size:1.1em">👇 <span id=cislo>549</span> people just tapped the button👇</strong>
+
+			<a href="https://ngl.link"><button style="animation: animate-shake 2s ease-in-out infinite;"><strong>Get your own messages!</strong></button></a>
+
+		</div>
+		<script async src="https://imgbb.com/upload.js" data-auto-insert="html-embed-medium"></script>
+	</div>
+
+
 	<script>
 
-		document.getElementById("form").addEventListener("submit", function(event){
-				event.preventDefault()
-				nacitat()
-			
-		});
+		document.getElementById("form").setAttribute("target","odeslat")
 
 
-		document.getElementById("form").setAttribute("target","_self") 
-		nacitani = false;
-		odeslat = document.getElementById("odeslat")
-		var vybrano = "presWA"
-		function vybrat(co){
-			document.getElementById('presWA').classList.remove("vybrano")
-			document.getElementById('presGmail').classList.remove("vybrano")
-			document.getElementById('presApp').classList.remove("vybrano")
-			document.getElementById('zrusit').classList.remove("vybrano")
-			co.classList.add("vybrano")
+		var nacitani = false
+		var textarea = document.getElementById('textarea')
+		var odeslat = document.getElementById('odeslat')
+		var spodek = document.getElementById("bottom")
+		var cislo = document.getElementById("cislo")
+		var obrazek = document.getElementById("obrazek")
 
-			document.getElementById("presApp-navod").style.display = "none"
-			document.getElementById("presWA-navod").style.display = "none"
-			document.getElementById("presGmail-navod").style.display = "none"
-			document.getElementById("zrusit-navod").style.display = "none"
-			document.getElementById(co.id + "-navod").style.display = "block"
-			vybrano = co.id
+		function extractImageUrl() {
+		    const imageUrlInput = document.getElementById('imageUrl');
+		    
+            const regex = /<a\s+[^>]*><img\s+[^>]*src=["']([^"']+)["'][^>]*><\/a>/i;
+		    const text = textarea.value;
+		    const match = text.match(regex);
+
+		    if (match) {
+		        // Extract the image URL
+		        const imageUrl = match[1];
+		        // Remove the matched text from the textarea
+		        textarea.value = text.replace(regex, '');
+		        // Put the image URL into the input field
+		        imageUrlInput.value = imageUrl;
+		        obrazek.src = imageUrl
+		        obrazek.style.display = "inline-block"
+		        document.getElementsByClassName('imgbb-button')[0].style.display = "none"
+		    }
 		}
-		function nacitat(){
-			var data
 
-			if(vybrano == "presWA"){
-				data = document.getElementById("WAtextarea").value
-			}else if(vybrano == "presGmail"){
-				data = "mail"
-			}else if(vybrano == "presApp"){
-				data = document.getElementById("appInput").value
-			}else if(vybrano == "zrusit"){
-				data = document.getElementById("zrusitTextarea").value
-			}
+		setInterval(extractImageUrl,500)
 
-			var params = "?oznameni=true&data=" + encodeURIComponent(data) + "&jmeno=" + encodeURIComponent(jmeno) + "&heslo=" + encodeURIComponent(heslo) + "&typ=" +encodeURIComponent(vybrano)
-
-			if (data == null || data == ""){
-				alert("Musíš vyplnit všechna políčka!")
-			}else{
-				console.log("https://script.google.com/macros/s/AKfycbxnjUYvRqEeID-yShtmGEcB_VEX6NjKisWXXDB-g6Yc2-wcP1teETfK6_ovQJZuBIn7XA/exec" + params)
-				nactiScript("https://script.google.com/macros/s/AKfycbxnjUYvRqEeID-yShtmGEcB_VEX6NjKisWXXDB-g6Yc2-wcP1teETfK6_ovQJZuBIn7XA/exec" + params)
-				console.log("nacitani")
-				nacitani = true
-				odeslat.innerHTML = "<img alt='nacitani...' class=nacitani src='nacitani.svg' >"
-			}
-			
+		function getRandomInt(min, max) {
+		    min = Math.ceil(min);
+		    max = Math.floor(max);
+		    return Math.floor(Math.random() * (max - min + 1)) + min;
 		}
+
+		setInterval(function(){
+			cislo.innerHTML = parseInt(cislo.innerHTML)+ getRandomInt(-3,3)
+		},1000)
 
 		function nacteno() {
 			if(nacitani){
+				setTimeout(function(){
+				document.title = "NGL - sent!"
+					var cislo = document.getElementById("cislo")
+					setInterval(function(){
+
+						cislo.innerHTML = parseInt(cislo.innerHTML)+ getRandomInt(-3,3)
+					},1000)
+				},100)
 				document.body.innerHTML = noveHTML
 
 			}
 		}
-		function chyba(data){
-			if(data.typ = "prihlaseni"){
-				alert("přihlášení vypršelo, přihlaš se znovu.")
-				window.location.href = "login.html";
-			}else{
-				alert("nastala neznámá chyba")
-			}
+		function nacitat(){
+			nacitani = true
+			odeslat.innerHTML = "<img alt='nacitani...' class=nacitani src='https://i.ibb.co/84CzQKn/nacitani-1.png' >"
 		}
 
+		var noveHTML = `<!DOCTYPE html>
+
+	
 
 
-		jmeno = localStorage.getItem("jmeno");
-		heslo = localStorage.getItem("heslo");
-
-		if (jmeno == null || heslo == null){
-		  window.location.href = "login.html";
-		}
-
-
-
-		var noveHTML = `
 	<div class="main">
 		<div style="min-height:30px"><img onclick="location.reload();" src="https://ngl.link/images/left.png" alt="<" class=navigace></div>
+		<img  src="https://ngl.link/images/sent.png" style="width:15vh;margin:auto">
+		
+		<h1>Sent!</h1>
 
-		<img  src="https://ngl.link/images/sent.png" style="width:15vh;margin:auto">	
-		<h1>Notifikace nastavena.</h1>
-		<strong>Po ruční kontrole se oznámení aktivují.</strong>
-		<br>
-		<a href=ngl.html ><button>zpět na NGL</button></a>
-		<a  href=napsat.html ><button>napsat NGL</button></a>
-		<a target="_blank" href=https://instagram.com/hanspa.pro.vsechny ><button>Přejít na instagram</button></a>
+		<strong style="font-size:1.1em">👇 <span id=cislo>549</span> people just tapped the button👇</strong>
+
+		<a href="https://ngl.link"><button style="animation: animate-shake 2s ease-in-out infinite;"><strong>Get your own messages!</strong></button></a>
+		<a class=odkaz href=javascript:location.reload()>Send another message</a>
+
 	</div>
 	<div style="width:100%" id="bottom">
 		<div class="main" >
@@ -284,34 +297,16 @@
 			<a href="https://apps.apple.com/us/app/peekaboo-make-new-friends/id1663086857" ><button class="tlacitko2"><b>New app from NGL 💙</b></button></a>
 		</div>
 	</div>
+
+
+
+
+
+	<\/script>
 `;
-	if (jmeno == null || heslo == null){
-      window.location.href = "login.html";
-    }
 
 
-    if(jmeno == 'adam'){
-    	document.getElementById("tajne").style.display = 'none'
-    }
-
-
-
-    function nactiScript(src){
-    	var script = document.createElement('script');
-    	script.src = src;
-    	script.async = true; // Nastavíme asynchronní načítání
-    	document.body.appendChild(script);
-    }
-    
 	</script>
-
-
-
-
-
-
-
-
-
+	<iframe style="width:0;height:0;outline:0;border:0" onload="nacteno()" id="odeslat" name="odeslat" src="about:blank"></iframe>
 </body>
 </html>
