@@ -80,6 +80,13 @@
 					height:5em;
 					width:5em;
 				}
+
+				#obrazek{
+					width:100%;
+					margin-top:1em;
+					display:none;
+				}
+
 	</style>
 </head>
 <body  >
@@ -112,7 +119,7 @@
 		<div class="top">
 			pošli nám<br>anonymní <span id=horni_text >zprávy</span>!
 		</div>
-		<div class="obalTextarea"><div id=text class="text">štve mě ta řada na raráška</div></div>
+		<div class="obalTextarea"><div id=text class="text">štve mě ta řada na raráška</div><img onerror="this.src = 'images/obrazekneni.png'" id=obrazek ></div>
 	</div>
 </div>
 
@@ -120,6 +127,11 @@
 
  <script>
 	document.getElementById("text").innerHTML = httpGetVars["text"] 
+
+	if(httpGetVars["obrazek"] != "" && httpGetVars["obrazek"] != undefined && httpGetVars["obrazek"] != null && httpGetVars["obrazek"] != 'undefined'){
+		document.getElementById("obrazek").src = httpGetVars["obrazek"];
+		document.getElementById("obrazek").style.display = "inline-block"
+	}
 </script>
 
 <script>
