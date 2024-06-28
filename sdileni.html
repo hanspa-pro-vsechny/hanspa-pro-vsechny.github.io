@@ -127,7 +127,7 @@
 
 
  <script>
-	document.getElementById("text").innerHTML = httpGetVars["text"] 
+	document.getElementById("text").innerHTML = httpGetVars["text"].replace("\n","<br>") 
 
 	if(httpGetVars["obrazek"] != "" && httpGetVars["obrazek"] != undefined && httpGetVars["obrazek"] != null && httpGetVars["obrazek"] != 'undefined'){
 		document.getElementById("obrazek").src = httpGetVars["obrazek"];
