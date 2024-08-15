@@ -270,10 +270,11 @@ const themeColor = document.querySelector('meta[name="theme-color"]')
 
     var zpravyEl = document.getElementById('zpravy')
     aktualniCas = new Date()
-
+    
 
 
     function nacteno(http){
+      var noveHTML = "";
       data = http.data
       var nacitani = document.getElementById('nacitani')
       nacitani.style.display = "none"
@@ -297,15 +298,16 @@ const themeColor = document.querySelector('meta[name="theme-color"]')
           }
 
           if (e.hasOwnProperty("odkaz na sdílení")){
-            zpravyEl.innerHTML += '<a href="'+e["odkaz na sdílení"]+'"><div class="'+e["hotovo?"]+'"><div class="main"><div class="cas">'+cas+'</div><div class="top">pošli mi<br>anonymní zprávy!</div><div class="obalTextarea"><div id="text" class="text">'+e["otázka"]+'</div></div></div></div></a>';
+            noveHTML += '<a href="'+e["odkaz na sdílení"]+'"><div class="'+e["hotovo?"]+'"><div class="main"><div class="cas">'+cas+'</div><div class="top">pošli mi<br>anonymní zprávy!</div><div class="obalTextarea"><div id="text" class="text">'+e["otázka"]+'</div></div></div></div></a>';
           }else{
-            zpravyEl.innerHTML += '<div class="'+e["hotovo?"]+'"><div class="main"><div class="cas">'+cas+'<div><a target=_blank href="https://docs.google.com/forms/d/e/1FAIpQLSdXZ-Pitmcz0MaVR1t1jgxVZMlpv5tH_ykEh_C4MUwh1Sc8Uw/viewform?usp=pp_url&entry.632061677='+ encodeURIComponent(e["otázka"]) +'" >nahlásit</a></div></div><div class="top">pošli mi<br>anonymní zprávy!</div><div class="obalTextarea"><div id="text" class="text">'+e["otázka"]+'</div></div></div></div>';
+            noveHTML += '<div class="'+e["hotovo?"]+'"><div class="main"><div class="cas">'+cas+'<div><a target=_blank href="https://docs.google.com/forms/d/e/1FAIpQLSdXZ-Pitmcz0MaVR1t1jgxVZMlpv5tH_ykEh_C4MUwh1Sc8Uw/viewform?usp=pp_url&entry.632061677='+ encodeURIComponent(e["otázka"]) +'" >nahlásit</a></div></div><div class="top">pošli mi<br>anonymní zprávy!</div><div class="obalTextarea"><div id="text" class="text">'+e["otázka"]+'</div></div></div></div>';
           }
         }else{
-          zpravyEl.innerHTML += "<div><p>Prázdná otázka</div>"
+          noveHTML += "<div><p>Prázdná otázka</div>"
         }
 
       });
+      pravyEl.innerHTML += noveHTML;
 
 
 
