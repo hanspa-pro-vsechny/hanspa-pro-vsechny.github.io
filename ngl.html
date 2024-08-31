@@ -321,7 +321,7 @@ const themeColor = document.querySelector('meta[name="theme-color"]')
             }
             
           }else{
-            
+
             if(e["url obrázku"] != undefined && e["url obrázku"] != null && e["url obrázku"] != ""){
               zpravyEl.innerHTML += '<div class="'+e["hotovo?"]+'"><div class="main"><div class="cas">'+cas+'<div><a target=_blank href="https://docs.google.com/forms/d/e/1FAIpQLSdXZ-Pitmcz0MaVR1t1jgxVZMlpv5tH_ykEh_C4MUwh1Sc8Uw/viewform?usp=pp_url&entry.632061677='+ encodeURIComponent(e["otázka"]) +'" >nahlásit</a></div></div><div class="top">pošli nám<br>anonymní <span class=horniTextZpravy-js >zprávy</span>!</div><div class="obalTextarea"><div id="text" class="text">'+e["otázka"]+'<img src="'+e["url obrázku"]+'" class=obrazek ></div></div></div></div>';
             }else{
@@ -348,7 +348,7 @@ const themeColor = document.querySelector('meta[name="theme-color"]')
 
       nahrazuj("role",http.prihlaseni.role)
       nahrazuj("jmeno",http.prihlaseni.jmeno)
-      //nahrazuj("horniTextZpravy","horniTextZpravy")
+      nahrazuj("horniTextZpravy","horniTextZpravy")
 
       if(http.prihlaseni.role == "admin"){
         document.getElementById("prepinatNeverejne").style.display = "block"
@@ -405,9 +405,11 @@ const themeColor = document.querySelector('meta[name="theme-color"]')
           console.log(element)
           if (zaCo == "horniTextZpravy"){
             
-            zaCo = moznostiHornihoTextu[Math.floor(Math.random()*moznostiHornihoTextu.length)];
+            zaCo2 = moznostiHornihoTextu[Math.floor(Math.random()*moznostiHornihoTextu.length)];
+          }else{
+            zaCo2 = zaCo
           }
-          element.innerHTML = zaCo
+          element.innerHTML = zaCo2
 
       }
     }
