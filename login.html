@@ -137,6 +137,13 @@
 	 <link rel="icon" type="image/x-icon" href="/logo.svg">
 </head>
 <body>
+	<div id=alertPozadi class="prekryti" style="display:none">
+		
+		<div class="alert">
+			<h2>načítání</h2>
+			<progress></progress>
+		</div>
+	</div>
 	<header>
 	  <img style=height:5em src="logo.svg">
 
@@ -150,7 +157,7 @@
 				ngl-share<br>
 				<strong>Přihlášení k zobrazení zpráv.</strong>
 			</div>
-			<div class="obalTextarea"><button onclick=vybrat(this) id=mamUcet class=vybrano>Už mám účet</button><button id=nemamUcet onclick=vybrat(this)>Potřebuji se zaregistrovat</button></div>
+			<div class="obalTextarea"><button onclick="vybrat(this)" id=mamUcet class=vybrano>Už mám účet</button><button id=nemamUcet onclick="vybrat(this)">Potřebuji se zaregistrovat</button></div>
 		</div>
 	</div>
 	<form data-target="odeslat"  action=about:blank x-action="https://script.google.com/macros/s/AKfycbxnjUYvRqEeID-yShtmGEcB_VEX6NjKisWXXDB-g6Yc2-wcP1teETfK6_ovQJZuBIn7XA/exec" id="form" data-target="odeslat"  class=main>
@@ -166,6 +173,9 @@
 				<div style="color:red;display:none" id=upozorneniJmeno>Toto jméno už někdo používá.</div>
 				<div class=napoveda>Heslo:</div>
 				<input id=heslo type="password"  maxlength="20" name="heslo" placeholder="heslo145" oninput="if (this.value.length != 0 && kontrolaJmen.odeslat){odeslat.style.display = 'block'}else{odeslat.style.display = 'none'}" >
+				<div style="text-align: right;" id=pouzeLogin>
+					<a href="javascript:nemaHeslo()" >Nepamatuješ si heslo?</a>
+				</div>
 				<div style=display:none id=mailPolicka>
 					<div class=napoveda>E-mail nebo Whatsapp:</div>
 					<input id=mail type="text"  maxlength="40" name="mail" placeholder="honzik.novak75@gmail.com" oninput="if (this.value.length != 0 && kontrolaJmen.odeslat){odeslat.style.display = 'block'}else{odeslat.style.display = 'none'}" >				
@@ -183,7 +193,7 @@
 				
 				<div class="alert">
 					<h2>snažíš se použít kód, pokud ho potvrdíš, tak políčko už nemusíš vyplňovat.</h2>
-						<input id=kod style="padding:2px;display: inline-block;border:1px solid black;font-size: 1.2em;font-family: monospace;" value="vionav-25-97">
+						<input id=kod style="padding:2px;display: inline-block;border:1px solid black;font-size: 1.2em;font-family: monospace;" value="">
 					<button class=tlacitko onclick=pouzitKod() >✅ použít</button>
 					<button class=tlacitko onclick="zrusitKod()">❌ zrušit</button>
 				</div>
@@ -191,6 +201,7 @@
 
 			</div>
 	<script>
+
 		kontrolaJmen = {
 			jmena:[],
 			nactena:false,
@@ -198,8 +209,29 @@
 			upozorneni:document.getElementById("upozorneniJmeno")
 		}
 
-		
+		function nemaHeslo(){
+			var mail = prompt("Chceš obnovit heslo?\nZadej sem svůj EMAIL:")
+			if(mail == null || mail == "" ){
+				return;
+			}
+			document.getElementById("alertPozadi").style.display = "flex"
+			document.body.classList.add("ne-posun")
+			nactiScript("https://script.google.com/macros/s/AKfycbxnjUYvRqEeID-yShtmGEcB_VEX6NjKisWXXDB-g6Yc2-wcP1teETfK6_ovQJZuBIn7XA/exec?zapomenuteHeslo="+mail)
 
+
+		}
+		function obnoveneHeslo(){
+			alert("Obnovení se povedlo.\nV mailu máš své nové heslo. To si potom můžeš změnit.")
+			alertPozadi.style.display = "none"
+			document.body.classList.remove("ne-posun")
+		}
+		function chyba(data){
+			if(data.type = mail){
+				alert("Při obnovení hesla nastala chyba:\nTento email k žádnému účtu nepatří")
+				alertPozadi.style.display = "none"
+				document.body.classList.remove("ne-posun")
+			}
+		}
 		function nactenyPrvniData(data){
 			kontrolaJmen.jmena = data.jmena;
 			kontrolaJmen.nactena = true
@@ -227,6 +259,7 @@
 				jmenoPolicko.style.color = "red"
 			}
 			console.log("kontrola",kontrolaJmen.odeslat)
+			console.log(maUcet)
 		}
 
 
@@ -238,7 +271,7 @@
 
 
 
-		document.getElementById("form").addEventListener("submit", function(event){
+		document.getElementById("form").addEventListener("submit", function(event){//odeslat()
 			if(maUcet){
 				event.preventDefault()
 				gtag("event", "login");
@@ -248,6 +281,7 @@
 				
 			}else{
 				nacitat()
+
 			}
 		});
 
@@ -263,14 +297,18 @@
 			document.getElementById('nemamUcet').classList.remove("vybrano")
 			co.classList.add("vybrano")
 			maUcet = (co.id == "mamUcet")
+			console.log("má učet",maUcet)
 			if (maUcet){
 				mailPolicka.style.display = "none"
+				pouzeLogin.style.display = "block"
 				document.getElementById("form").setAttribute("target","_self")
 				document.getElementById("form").setAttribute("action","")
 
 
 			}else{
 				mailPolicka.style.display = "block"
+				pouzeLogin.style.display = "none"
+
 				document.getElementById("form").setAttribute("target","odeslat")
 				document.getElementById("form").setAttribute("action","https://script.google.com/macros/s/AKfycbxnjUYvRqEeID-yShtmGEcB_VEX6NjKisWXXDB-g6Yc2-wcP1teETfK6_ovQJZuBIn7XA/exec")
 			}
@@ -316,18 +354,27 @@
 
 		function nacteno() {
 			if(nacitani){
-				if (kod != ""){
-					event.preventDefault()
+				event.preventDefault()
+				if (kod.value != ""){
+					
 					gtag("event", "login");
 					localStorage.setItem("heslo", document.getElementById('heslo').value);
 					localStorage.setItem("jmeno", document.getElementById('jmeno').value);
 					window.location.href = "ngl.html"
 				}else{
 					document.body.innerHTML = noveHTML
+					//nactiScript("https://script.google.com/macros/s/AKfycbxnjUYvRqEeID-yShtmGEcB_VEX6NjKisWXXDB-g6Yc2-wcP1teETfK6_ovQJZuBIn7XA/exec?"+"registrace&jmeno=" encodeURIComponent(e) )
 				}
 				
 
 			}
+		}
+
+		function nactiScript(src){
+			var script = document.createElement('script');
+			script.src = src;
+			script.async = true; // Nastavíme asynchronní načítání
+			document.body.appendChild(script);
 		}
 		var noveHTML = `
 	<div class="main">
