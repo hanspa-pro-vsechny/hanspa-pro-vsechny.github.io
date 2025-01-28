@@ -250,8 +250,8 @@
   </div>
   <div id="nactene">
 
-    <div class=spodek><div  class=main ><img style=height:5em;margin:auto; src="logo.svg"><br><p>Přihlášen jako <span class="jmeno-js"></span><br>
-      <button class=tlacitko onclick=odhlas()>🚪 odhlásit se</button>
+    <div class=spodek><div  class=main ><img style=height:5em;margin:auto; src="logo.svg"><br><p>anonimní uživatel</p><br>
+      
 
       <a href="napsat.html?utm_source=ukazka_online&utm_medium=web&utm_campaign=tlacitkoNAHO%C5%98E" >
         <button class=tlacitko >📝 napsat anonymní zprávu</button>
@@ -347,7 +347,6 @@ const themeColor = document.querySelector('meta[name="theme-color"]')
       document.getElementById('nactene').style.display = "block"
 
       nahrazuj("role",http.prihlaseni.role)
-      nahrazuj("jmeno",http.prihlaseni.jmeno)
       nahrazuj("horniTextZpravy","horniTextZpravy")
 
       if(http.prihlaseni.role == "admin"){
@@ -364,17 +363,11 @@ const themeColor = document.querySelector('meta[name="theme-color"]')
     
 
 }//načteno - konec
-  function odhlas(){
-    localStorage.removeItem("heslo");
-    localStorage.removeItem("jmeno");
-    window.location.href = "login.html";
 
-  }
   function chyba(data){
-    if (data.typ == "heslo"){
-      location.href = "login.html#chyba"
     
-  }else if(data.typ == "nováček" || data.typ == "ban"){
+    
+  if(data.typ == "nováček" || data.typ == "ban"){
     document.getElementsByTagName('progress')[0].style.display = "none"
     document.getElementById('textNacitani').innerHTML = data.text
     document.getElementById('textNacitani').style.fontSize = "1.7rem"
@@ -383,17 +376,13 @@ const themeColor = document.querySelector('meta[name="theme-color"]')
     }
 
   }else{
-    alert("chyba při přihlašování")
+    alert("chyba při načítání")
   }}
 
 
 
-    jmeno = localStorage.getItem("jmeno");
-    heslo = localStorage.getItem("heslo");
+    
 
-    if (jmeno == null || heslo == null){
-      window.location.href = "login.html";
-    }
     function nahrazuj(trida,zaCo) {
       const moznostiHornihoTextu = ["zprávy","hroty","zprávy","přiznání","drby","zprávy","hroty"]
       const elements = document.getElementsByClassName(trida + "-js");
@@ -422,10 +411,10 @@ const themeColor = document.querySelector('meta[name="theme-color"]')
     }
 
 
-    console.log('<script async src="https://script.google.com/macros/s/AKfycbxnjUYvRqEeID-yShtmGEcB_VEX6NjKisWXXDB-g6Yc2-wcP1teETfK6_ovQJZuBIn7XA/exec?jsonp=nacteno&jmeno='+encodeURIComponent(jmeno)+'&heslo='+encodeURIComponent(heslo)+'">')
-    document.write('<script async src="https://script.google.com/macros/s/AKfycbxnjUYvRqEeID-yShtmGEcB_VEX6NjKisWXXDB-g6Yc2-wcP1teETfK6_ovQJZuBIn7XA/exec?jsonp=nacteno&jmeno='+encodeURIComponent(jmeno)+'&heslo='+encodeURIComponent(heslo)+'">')
+    //console.log('<script async src="https://script.google.com/macros/s/AKfycbxnjUYvRqEeID-yShtmGEcB_VEX6NjKisWXXDB-g6Yc2-wcP1teETfK6_ovQJZuBIn7XA/exec?jsonp=nacteno">')
+    //document.write('<script async src="https://script.google.com/macros/s/AKfycbxnjUYvRqEeID-yShtmGEcB_VEX6NjKisWXXDB-g6Yc2-wcP1teETfK6_ovQJZuBIn7XA/exec?jsonp=nacteno">')
   </script>
-
+<script async src="https://script.google.com/macros/s/AKfycbxnjUYvRqEeID-yShtmGEcB_VEX6NjKisWXXDB-g6Yc2-wcP1teETfK6_ovQJZuBIn7XA/exec?jsonp=nacteno">
  
 </script>
 </body>
