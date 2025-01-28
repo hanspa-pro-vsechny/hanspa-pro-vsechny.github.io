@@ -257,12 +257,7 @@
 
 
 
-		jmeno = localStorage.getItem("jmeno");
-		heslo = localStorage.getItem("heslo");
-
-		if (jmeno == null || heslo == null){
-		  window.location.href = "login.html";
-		}
+	
 
 
 
@@ -285,9 +280,7 @@
 		</div>
 	</div>
 `;
-	if (jmeno == null || heslo == null){
-      window.location.href = "login.html";
-    }
+
 
 
     if(jmeno == 'adam'){
@@ -302,6 +295,10 @@
     	script.async = true; // Nastavíme asynchronní načítání
     	document.body.appendChild(script);
     }
+
+		alert("nastavování notifikací je aktuálně mimo provoz")
+		window.location.href = "ngl.html"
+		
     
 	</script>
 
