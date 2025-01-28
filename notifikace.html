@@ -226,7 +226,7 @@
 				data = document.getElementById("zrusitTextarea").value
 			}
 
-			var params = "?oznameni=true&data=" + encodeURIComponent(data) + "&jmeno=" + encodeURIComponent(jmeno) + "&heslo=" + encodeURIComponent(heslo) + "&typ=" +encodeURIComponent(vybrano)
+			var params = "?oznameni=true&data=" + encodeURIComponent(data)  + "&typ=" +encodeURIComponent(vybrano)
 
 			if (data == null || data == ""){
 				alert("Musíš vyplnit všechna políčka!")
@@ -247,17 +247,14 @@
 			}
 		}
 		function chyba(data){
-			if(data.typ = "prihlaseni"){
-				alert("přihlášení vypršelo, přihlaš se znovu.")
-				window.location.href = "login.html";
-			}else{
+
 				alert("nastala neznámá chyba")
-			}
+			
 		}
 
 
 
-	
+
 
 
 
@@ -295,10 +292,6 @@
     	script.async = true; // Nastavíme asynchronní načítání
     	document.body.appendChild(script);
     }
-
-		alert("nastavování notifikací je aktuálně mimo provoz")
-		window.location.href = "ngl.html"
-		
     
 	</script>
 
