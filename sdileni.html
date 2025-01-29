@@ -209,7 +209,7 @@ captureBtn.addEventListener('click', () => {
   html2canvas(document.getElementById('content'), { scale: 2 }).then(canvas => {
     // Convert the canvas to a data URL in PNG format
 
-    const imageDataURL = canvas.toDataURL('image/png');
+    const imageDataURL = canvas.toDataURL('image/png'); 
 
     // Create a temporary anchor element to trigger the download
     const downloadLink = document.createElement('a');
