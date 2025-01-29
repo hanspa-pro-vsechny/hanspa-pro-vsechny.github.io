@@ -257,13 +257,14 @@
         <button class=tlacitko >📝 napsat anonymní zprávu</button>
       </a>
       <hr>
+      <!--
       <a href="notifikace.html?utm_source=ukazka_online&utm_medium=web&utm_campaign=tlacitkoNAHO%C5%98E" >
         <button class=tlacitko onclick="alert('Notifikace pozastaveny'); return false" >🔔 nastavit notifikace</button>
       </a>
       <a href="heslo.html?utm_source=ukazka_online&utm_medium=web&utm_campaign=tlacitkoNAHO%C5%98E" >
         <button onclick="alert('nejde pro anonymního uživatele'); return false" class=tlacitko >🔐 změnit heslo</button>
       </a>
-
+      -->
       <a href="https://www.instagram.com/hanspa.pro.vsechny/" >
         <button class=tlacitko ><img src="images/instagram_logo.png" class=emoji> sledovat na instagramu</button>
       </a>      
@@ -272,7 +273,10 @@
       <button style=display:none onclick="zpravyEl.classList.toggle('pouzeNeVerejne')" id=prepinatNeverejne class="tlacitko">🛠 zobrazit pouze neveřejné</button></div></div>
       <div id=zakryti class=fadeout ></div>
 
-    <div id="zpravy"></div>
+    <div id="zpravy">
+      
+
+    </div>
 
     <div class=spodek><div  class=main ><p>To je vše za posledních pár dní. Starší zprávy si mohou zobrazit ti, co mají vyšší roli než <span class=role-js >ty</span>.<br><button onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" class=tlacitko>nahoru</button></div></div>
 
