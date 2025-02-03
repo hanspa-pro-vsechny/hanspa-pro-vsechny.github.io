@@ -57,6 +57,8 @@
 	var ua = navigator.userAgent || navigator.vendor || window.opera;
 	var jeInstagram = (ua.indexOf('Instagram') > -1) ? true : false;
 	//jeInstagram = true
+
+
 	
 </script>
 
@@ -342,7 +344,7 @@
 				@hanspa.pro.vsechny<br>
 				<strong>pošli mi anonymní zprávy!</strong></div>
 			<div class="obalTextarea">
-				<textarea id=textarea onfocus="spodek.style.display = 'none'" maxlength="300" name="otazka" placeholder="send me anonymous messages..." oninput="this.style.height = (this.scrollHeight) +'px';if (this.value.length != 0){odeslat.style.display = 'block'}else{odeslat.style.display = 'none'}" ></textarea>
+				<textarea id=textarea onfocus="spodek.style.display = 'none'" maxlength="300" name="otazka" placeholder="Pošli nám anonymní zprávy..." oninput="this.style.height = (this.scrollHeight) +'px';if (this.value.length != 0){odeslat.style.display = 'block'}else{odeslat.style.display = 'none'}" ></textarea>
 				
 					<script>
 						if(jeInstagram){
@@ -367,9 +369,9 @@
 
 	<div style="width:100%" id="bottom">
 		<div class="main" >
-			<strong style="font-size:1.1em">👇 <span id=cislo>549</span> people just tapped the button👇</strong>
+			<!--<strong style="font-size:1.1em">👇 <span id=cislo>549</span> people just tapped the button👇</strong>-->
 
-			<a href="https://ngl.link"><button style="animation: animate-shake 2s ease-in-out infinite;"><strong>Get your own messages!</strong></button></a>
+			<a href="ngl.html"><button style="animation: animate-shake 2s ease-in-out infinite;"><strong>Přečti si co napsali ostatní!</strong></button></a>
 
 		</div>
 		<script>
@@ -420,10 +422,10 @@
 		    max = Math.floor(max);
 		    return Math.floor(Math.random() * (max - min + 1)) + min;
 		}
-
+		/*
 		setInterval(function(){
 			cislo.innerHTML = parseInt(cislo.innerHTML)+ getRandomInt(-3,3)
-		},1000)
+		},1000)*/
 
 		function nacteno() {
 			if(nacitani){
@@ -457,6 +459,17 @@
 		}
 
 
+		setTimeout(()=>{
+			try{
+				document.getElementsByClassName('imgbb-button-text')[0].innerHTML = "Přidat obrázek"
+
+			}catch(e){
+				console.log(e)
+			}
+			
+		},100)
+
+
 		barvy = ["#cc402a","teal","orange","grey","pink","violet","green","yellow","#4cb2ac","#941760","#61b8fa","#96d60c","#cbc2bc","#294f03","#a0cd93","magenta","lime","brown","amber","#362312","#ffbf46"]
 		rootEl = document.getElementsByTagName('html')[0]
 		function dalsiBarva(){
@@ -486,11 +499,11 @@
 		<div style="min-height:30px"><img onclick="location.reload();" src="https://ngl.link/images/left.png" alt="<" class=navigace></div>
 		<img  src="https://ngl.link/images/sent.png" style="width:15vh;margin:auto">
 		
-		<h1>Sent!</h1>
+		<h1>Odesláno!</h1>
 
-		<strong style="font-size:1.1em">👇 <span id=cislo>549</span> people just tapped the button👇</strong>
+		<strong style="font-size:1.1em">👇<!--<span id=cislo>549</span>-->I to co už na instagramu zmizelo, bez cenzury👇</strong>
 
-		<a href="https://ngl.link"><button style="animation: animate-shake 2s ease-in-out infinite;"><strong>Get your own messages!</strong></button></a>
+		<a href="ngl.html"><button style="animation: animate-shake 2s ease-in-out infinite;"><strong>Podívej se co napsali ostatní!</strong></button></a>
 		<a class=odkaz href=javascript:location.reload()>Send another message</a>
 
 	</div>
