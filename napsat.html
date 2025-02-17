@@ -473,20 +473,26 @@
 		barvy = ["#cc402a","teal","orange","grey","pink","violet","green","yellow","#4cb2ac","#941760","#61b8fa","#96d60c","#cbc2bc","#294f03","#a0cd93","magenta","lime","brown","amber","#362312","#ffbf46"]
 		rootEl = document.getElementsByTagName('html')[0]
 		function dalsiBarva(){
+			console.log("%c další barva","font-size:1.1em;color:blue;")
 			barva = barvy.random()
+
+			barvaInput.value = barva //POZOR: musí být dřív než to další, protože to další moc nefunguje a občas barva nakonci je absolutně jiná než ta puvodní 
+			console.log("barva v inputu",barva)
+
 			document.getElementsByTagName('html')[0].style.background = barva
 			//změní barvu popředí horní části podle barvy pozadí
 			//získá barvu pozadí horní poloviny ve formátu "rgb(00,00,00)"
-			var barva = window.getComputedStyle( document.getElementsByTagName('html')[0] ,null).getPropertyValue('background');
+			var barva = window.getComputedStyle( document.getElementsByTagName('html')[0] ,null).getPropertyValue('background-color'); 
+			console.log("barva getComputedStyle",barva)
 			barva = barva.substring(4, barva.length-1); //rgb(00,00,00) -> 00,00,00
 			barva = barva.split(",")//00,00,00 -> [00,00,00]
 			barva = rgbToHex(barva[0],barva[1],barva[2]) //[00,00,00] -> #000000
-			console.log(barva)
+			console.log("upravená",barva)
 			barvaPopredi = invertColor(barva,true) //je lepší černá nebo bílá?
-			console.log(barvaPopredi)
+			console.log("popředí",barvaPopredi)
 			document.getElementsByTagName('html')[0].style.color = barvaPopredi
 
-			barvaInput.value = barva
+			
 		}
 
 
