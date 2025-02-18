@@ -348,7 +348,13 @@
 				
 					<script>
 						if(jeInstagram){
-							document.write(`<div class="imgbb-container"><button type="button" onclick='vyvolatAlert();return false' data-imgbb-trigger="" class="imgbb-button" data-imgbb-id="b1ebe844-6deb-4292-985e-57c95161b896"><span class="imgbb-button-icon"><svg class="imgbb-button-icon" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M76.7 87.5c12.8 0 23.3-13.3 23.3-29.4 0-13.6-5.2-25.7-15.4-27.5 0 0-3.5-0.7-5.6 1.7 0 0 0.6 9.4-2.9 12.6 0 0 8.7-32.4-23.7-32.4 -29.3 0-22.5 34.5-22.5 34.5 -5-6.4-0.6-19.6-0.6-19.6 -2.5-2.6-6.1-2.5-6.1-2.5C10.9 25 0 39.1 0 54.6c0 15.5 9.3 32.7 29.3 32.7 2 0 6.4 0 11.7 0V68.5h-13l22-22 22 22H59v18.8C68.6 87.4 76.7 87.5 76.7 87.5z" style="fill: currentcolor;"></path></svg></span><span class="imgbb-button-text">Přidat obrázek</span></button></div>`)
+						    let container = document.createElement('div');
+						    container.className = 'imgbb-container';
+						    container.innerHTML = `<button type="button" onclick='vyvolatAlert();return false' class="imgbb-button">
+						        <span class="imgbb-button-icon"><svg class="imgbb-button-icon" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+						        <path d="M76.7 87.5c12.8 0 23.3-13.3 23.3-29.4 0-13.6-5.2-25.7-15.4-27.5 0 0-3.5-0.7-5.6 1.7 0 0 0.6 9.4-2.9 12.6 0 0 8.7-32.4-23.7-32.4 -29.3 0-22.5 34.5-22.5 34.5 -5-6.4-0.6-19.6-0.6-19.6 -2.5-2.6-6.1-2.5-6.1-2.5C10.9 25 0 39.1 0 54.6c0 15.5 9.3 32.7 29.3 32.7 2 0 6.4 0 11.7 0V68.5h-13l22-22 22 22H59v18.8C68.6 87.4 76.7 87.5 76.7 87.5z" style="fill: currentcolor;"></path>
+						        </svg></span><span class="imgbb-button-text">Přidat obrázek</span></button>`;
+						    document.querySelector(".obalTextarea").appendChild(container);
 						}
 
 					</script>
@@ -374,10 +380,17 @@
 			<a href="ngl.html"><button style="animation: animate-shake 2s ease-in-out infinite;"><strong>Přečti si co napsali ostatní!</strong></button></a>
 
 		</div>
+		<div id=pridejZaToObrazek ></div>
 		<script>
-			if (!jeInstagram){
-				document.write(`<script async src="https://imgbb.com/upload.js" data-auto-insert="html-embed-medium"><\/script>`)
-			}
+				if (!jeInstagram) {
+				    let script = document.createElement("script");
+				    script.src = "https://imgbb.com/upload.js";
+				    script.async = true;
+				    script.setAttribute("data-auto-insert", "html-embed-medium");
+				    document.body.appendChild(script);
+				}
+
+			
 		</script>
 		
 	</div>
@@ -461,7 +474,10 @@
 
 		setTimeout(()=>{
 			try{
-				document.getElementsByClassName('imgbb-button-text')[0].innerHTML = "Přidat obrázek"
+				if(document.getElementsByClassName('imgbb-button-text').length == 2){
+					document.getElementsByClassName('imgbb-button-text')[0].innerHTML = "Přidat obrázek"
+				}
+				
 
 			}catch(e){
 				console.log(e)
