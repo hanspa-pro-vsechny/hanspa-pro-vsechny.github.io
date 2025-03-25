@@ -57,6 +57,7 @@
 	var ua = navigator.userAgent || navigator.vendor || window.opera;
 	var jeInstagram = (ua.indexOf('Instagram') > -1) ? true : false;
 	//jeInstagram = true
+	//debug only 
 
 
 	
@@ -308,6 +309,11 @@
 								.policko{
 									box-shadow:0 0 black ;
 								}
+								.drobnyTlacitko{
+									width:fit-content;
+									x-background:transparent;
+								}
+								
 
 					
 
@@ -328,13 +334,16 @@
 	<div id=alert-pozadi class="prekryti" style="display:none">
 		
 		<div class="alert">
-			<h2>Pokud chceš přidat obrázek, musíš otevřít tuto stránku v jiné aplikaci. (třeba v menu (<b style="">⋮</b>) nahoře <b>↗</b> klikni na <i>otevřít v...</i>)</h2>
-			<img class=prohlizece src=images/prohlizece.png >
-				<input readonly id=kod style="padding:2px;display: inline-block;border:1px solid black;font-size: 1.2em;font-family: monospace;" value="https://1url.cz/O1euL" onfocus="this.select()">
-			<button class=tlacitko onclick="zrusitAlert()">❌ zrušit</button>
+			<p>✅ Pro přidání obrázku je potřeba otevřít <b>odkaz</b> v prohlížeči. (Protože instagram tuto funkci neumí přímo)</p>
+			<h2>📎 <b>zkopíruj</b> odkaz níže a otevři ho v Chrome, Safari nebo jiném prohlížeči:</h2>
+			<p>nebo v menu (<b style="">⋮</b>) nahoře <b>↗</b> klikni na <i>otevřít v...</i></h2></p>
+			<!--<h2>Pokud chceš přidat obrázek, musíš otevřít tuto stránku v jiné aplikaci. (třeba v menu (<b style="">⋮</b>) nahoře <b>↗</b> klikni na <i>otevřít v...</i>)</h2>-->
+			<!--<img class=prohlizece src=images/prohlizece.png >-->
+			<input readonly class=kod id=kod style="padding:2px;display: inline-block;border:1px solid black;font-size: 1.2em;font-family: monospace;" value="https://1url.cz/O1euL" onfocus="this.select()">
+			<button class="drobnyTlacitko" onclick="kopiruj(kod);this.innerHTML = '✅teď to vlož do prohlížeče!'">📋kopíruj</button>
+			<button class=tlacitko2 onclick="zrusitAlert()" style="background:#33333333">❌ zrušit</button>
 		</div>
-
-
+		
 	</div>
 	<img src="https://i.ibb.co/84CzQKn/nacitani-1.png" style="display:none">
 	<form id="form" onsubmit="nacitat()" data-target="odeslat" action="https://script.google.com/macros/s/AKfycbwTqS0vzNNJV7bCS37qe1Ezoj_Gl0VHO7VAtMmwCDufWiQSfp9HIxU2aBbL7bej3Weg/exec" class=main>
@@ -408,6 +417,24 @@
 		var cislo = document.getElementById("cislo")
 		var obrazek = document.getElementById("obrazek")
 
+
+
+		//pokud je předvyplněno, vloží do textarei a zobrazí odeslat
+		if(window.location.search.indexOf("text=") != -1){
+			textarea.value = decodeURIComponent(window.location.search.split("text=")[1].split("&")[0])
+			odeslat.style.display = "block"
+		}
+		//to stejné udělá s barvou
+		if(window.location.search.indexOf("barva=") != -1){
+			barvaInput.value = decodeURIComponent(window.location.search.split("barva=")[1].split("&")[0])
+			document.getElementsByTagName('html')[0].style.background = barvaInput.value
+			document.getElementsByTagName('html')[0].style.color = invertColor(barvaInput.value,true)
+		}
+
+
+
+
+
 		function extractImageUrl() {
 		    const imageUrlInput = document.getElementById('imageUrl');
 		    
@@ -467,6 +494,12 @@
 		function vyvolatAlert(){
 			document.getElementById("alert-pozadi").style.display = "flex"
 			document.body.classList.add("ne-posun")
+
+			//upraví url v inputu, aby používala parametr barva a text pro lepší user experience	
+			var url = window.location.href.split("?")[0] + "?barva=" + barvaInput.value + "&text=" + encodeURIComponent(textarea.value)
+			document.getElementById("kod").value = url
+
+		
 		}
 
 		
@@ -515,7 +548,17 @@
 
 			
 		}
+		function kopiruj(el) {
+			// Get the text field
+			var copyText = el;
 
+			// Select the text field
+			copyText.select();
+			copyText.setSelectionRange(0, 99999); // For mobile devices
+
+			// Copy the text inside the text field
+			navigator.clipboard.writeText(copyText.value);
+		}
 
 		var noveHTML = `<!DOCTYPE html>
 
@@ -523,7 +566,7 @@
 
 
 	<div class="main">
-		<div style="min-height:30px"><img onclick="location.reload();" src="https://ngl.link/images/left.png" alt="<" class=navigace></div>
+		<div style="min-height:30px"><img onclick="window.location = window.location.href.split("?")[0];" src="https://ngl.link/images/left.png" alt="<" class=navigace></div>
 		<img  src="https://ngl.link/images/sent.png" style="width:15vh;margin:auto">
 		
 		<h1>Odesláno!</h1>
@@ -531,7 +574,7 @@
 		<strong style="font-size:1.1em">👇<!--<span id=cislo>549</span>-->I to co už na instagramu zmizelo, bez cenzury👇</strong>
 
 		<a href="ngl.html"><button style="animation: animate-shake 2s ease-in-out infinite;"><strong>Podívej se co napsali ostatní!</strong></button></a>
-		<a class=odkaz href=javascript:location.reload()>Send another message</a>
+		<a class=odkaz href='javascript:window.location=window.location.href.split("?")[0]' >Send another message</a>
 
 	</div>
 	<div style="width:100%" id="bottom">
@@ -547,6 +590,7 @@
 
 	<\/script>
 `;
+
 
 
 	</script>
