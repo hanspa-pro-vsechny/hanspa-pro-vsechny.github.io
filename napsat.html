@@ -421,7 +421,7 @@
 
 		//pokud je předvyplněno, vloží do textarei a zobrazí odeslat
 		if(window.location.search.indexOf("text=") != -1){
-			textarea.value = decodeURIComponent(window.location.search.split("text=")[1].split("&")[0])
+			textarea.value = decodeURIComponent(window.location.search.split("text=")[1].split("&")[0]).replace("+"," ")
 			odeslat.style.display = "block"
 		}
 		//to stejné udělá s barvou
