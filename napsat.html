@@ -67,256 +67,248 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>@hanspa.pro.vsechny - NGL link</title>
 	<style>
-				body {
-				  overflow-x: hidden; /* Hide scrollbars */
-				}
-				html {
-		    		background: #EC1187 linear-gradient(to bottom right, #EC1187 0%, #FF8D10 100%);
-		    		background-repeat: no-repeat;
-		    		width: 100vw;
-		    		height: 100vh;
-		    		height: -webkit-fill-available;
-		    		color:white;
-		    		font-family: sans-serif;
-		    		text-align: center;
-		    		font-size: 15px;
-		    		background-attachment: fixed;
-		    		transition: background .1s;
+		html {
+			box-sizing: border-box;
+		}
+		*, *:before, *:after {
+			box-sizing: inherit;
+		}
+		html, body {
+			margin: 0; height: 100%;
+		}
+		body {
+			overflow-x: hidden; /* Hide scrollbars */
+		}
+		html {
+			background: #EC1187 linear-gradient(to bottom right, #EC1187 0%, #FF8D10 100%);
+			background-repeat: no-repeat;
+			width: 100vw;
+			height: 100vh;
+			height: -webkit-fill-available;
+			color:white;
+			font-family: sans-serif;
+			text-align: center;
+			font-size: 15px;
+			background-attachment: fixed;
+			transition: background .1s;
 
-				}
-				.main{
-					width: calc(85% - 20px);
-					max-width: 620px;
-					margin: 44px auto;
-				}
-				.policko{
-				}
-				.obalTextarea{
-					    background-color: rgba(255,255,255,0.4);
-					    width:100%;
-					    min-height:100px;
-					    border-bottom-left-radius:30px;
-					    border-bottom-right-radius:30px;
-					    padding:20px;
-				}
-				textarea{
-					width:100%;
-					margin:0;
-		  background: transparent;
-					padding:0;
-					font-family: sans-serif;
-					font-size:1.3rem;
-					outline:0;
-					height:100%;
-					resize: vertical;
-					  font-weight: bold;
-					  border:none;
-					  height:80px;
+		}
+		.main{
+			width: calc(85% - 20px);
+			max-width: 620px;
+			margin: 44px auto;
+		}
+		
+		.obalTextarea{
+			background-color: rgba(255,255,255,0.4);
+			width:100%;
+			min-height:100px;
+			border-bottom-left-radius:30px;
+			border-bottom-right-radius:30px;
+			padding:20px;
+		}
+		textarea{
+			width:100%;
+			margin:0;
+			background: transparent;
+			padding:0;
+			font-family: sans-serif;
+			font-size:1.3rem;
+			outline:0;
+			height:100%;
+			resize: vertical;
+			font-weight: bold;
+			border:none;
+			height:80px;
+		}
 
+		.top{
+			color:black;
+			background-color:white;
+			width:100%;
+			border-top-left-radius:30px;
+			border-top-right-radius:30px;
+			padding:20px;
+			text-align:left;
 
+		}
+		.logo{
+			height:2.5em;
+			float:left;
+			padding-right:10px;
 
-				}
-				.top{
-					color:black;
-					background-color:white;
-					width:100%;
-					border-top-left-radius:30px;
-					border-top-right-radius:30px;
-					padding:20px;
-					text-align:left;
+		}
+		button{
+			width:100%;
+			background-color: black;
+			border-radius:100px;
+			margin:10px;
+			color:white;
+			font-size:1.2rem;
+			border:none;
+			outline:none;
+			padding:15px;
+			cursor:pointer;
+		}
+		#bottom{
+			position:absolute;
+			bottom:20px;
+			padding:0;
+			margin:0;
+		}
 
-				}
-				.logo{
-					height:2.5em;
-					float:left;
-					padding-right:10px;
+		@keyframes animate-shake {
+			0%,
+			10%,
+			65%,
+			100% {
+				transform: rotate(0deg) scale(1.0);
+			}
+			
+			30%,
+			40% {
+				transform: rotate(-1deg) scale(1.05);
+			}
+			
+			35%,
+			45% {
+				transform: rotate(1deg) scale(1.05);
+			}
+		}
 
-				}
-				button{
-					width:100%;
-					background-color: black;
-					border-radius:100px;
-					margin:10px;
-					color:white;
-					font-size:1.2rem;
-					border:none;
-					outline:none;
-					padding:15px;
-					cursor:pointer;
-				}
-				#bottom{
-					position:absolute;
-					bottom:20px;
-					padding:0;
-					margin:0;
-				}
+		.tlacitko2{
+			background: rgba(255,255,255,0.5);
+			color: black;
+			width: auto;
+				height: 48px;
+				font-size: 15px;
+				padding: 0 24px 1px;
+		}
+		.navigace{
+			width: 24px;
+			aspect-ratio: auto 24 / 24;
+			height: 24px;
+			float:left;
+			cursor:pointer;
+		}
+		.odkaz{
+			text-decoration: none;
+			border-bottom:2px solid white;
+			color:white;
+			font-size: 1.1em;
+			font-weight: bold;
+		}
+		.nacitani{
+			height:1.1em;
+			animation:nacitani 1s infinite linear;
 
-				@keyframes animate-shake {
-				    0%,
-				    10%,
-				    65%,
-				    100% {
-				      transform: rotate(0deg) scale(1.0);
-				    }
-				  
-				    30%,
-				    40% {
-				      transform: rotate(-1deg) scale(1.05);
-				    }
-				  
-				    35%,
-				    45% {
-				      transform: rotate(1deg) scale(1.05);
-				    }
-				}
-				.tlacitko2{
-					background: rgba(255,255,255,0.5);
-					color: black;
-					width: auto;
-					    height: 48px;
-					    font-size: 15px;
-					    padding: 0 24px 1px;
-				}
-				.navigace{
-					width: 24px;
-					aspect-ratio: auto 24 / 24;
-					height: 24px;
-					float:left;
-					cursor:pointer;
-				}
-				.odkaz{
-					text-decoration: none;
-					border-bottom:2px solid white;
-					color:white;
-					font-size: 1.1em;
-					font-weight: bold;
-				}
-				.nacitani{
-					height:1.1em;
-					animation:nacitani 1s infinite linear;
+		}
+		@keyframes nacitani{
+			from{
+				transform:rotate(0);
+			}
+			to{
+				transform:rotate(360deg);
+			}
+		}
+		#obrazek{
+			max-width: 100%;
+			display: none;
+		}
 
-				}
-				@keyframes nacitani{
-					from{
-						transform:rotate(0);
-					}
-					to{
-						transform:rotate(360deg);
-					}
-				}
-						html {
-						  box-sizing: border-box;
-						}
-						*, *:before, *:after {
-						  box-sizing: inherit;
-						}
-						html, body {margin: 0; height: 100%; }
+		.prekryti{
+			height:100vh;
+			width:100vw;
+			position:fixed;
+			background-color:rgba(0, 0, 0, 0.30);
+			margin:0;
+			padding:0;
+			z-index:10;
+			top:0;
+			left:0;
+			backdrop-filter: blur(7px);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
 
-						.imgbb-button{
-							background-color:black !important;
-							font-size:1.1em !important;
-							border-radius: 1em !important;
-							color:white !important;
-							margin-bottom: 0;
-							
-						}
-						#obrazek{
-							max-width: 100%;
-							display: none;
-						}
+		.alert{
+			border:10px solid black;
+			padding:10px;
+			padding-right:30px;
+			display:block;
+			width: 400px;
+			max-width:90vw;
+			/*height: 200px;*/
+			/*border: 10px solid blue;*/
+			border-radius: 10px;
+			color:black;
+			background-color: white;
+			transition: border-radius .2s;
+			outline:1px solid white;
+		}
+		.prohlizece{
+			max-width:100%;
+		}
 
-								.prekryti{
-									height:100vh;
-									width:100vw;
-									position:fixed;
-									background-color:rgba(0, 0, 0, 0.30);
-									margin:0;
-									padding:0;
-									z-index:10;
-									top:0;
-									left:0;
-									backdrop-filter: blur(7px);
-									display: flex;
-									justify-content: center;
-									align-items: center;
-									
+		.ne-posun {
+			overflow: hidden; /* Hide scrollbars */
+		}
+		/* IMGBB tlačítko */
+		.imgbb-button{
+			background-color:black !important;
+			font-size:1.1em !important;
+			border-radius: 1em !important;
+			color:white !important;
+			margin-bottom: 0;
+		}
+		.imgbb-button {
+			line-height: normal;
+			-webkit-transition: all .2s;
+			-o-transition: all .2s;
+			transition: all .2s;
+			outline: 0;
+			color: #333;
+			border: none;
+			cursor: pointer;
+			border: 1px solid rgba(0, 0, 0, .15);
+			background: #ececec;
+			border-radius: .2em;
+			padding: .5em 1em;
+			font-size: 12px;
+			font-weight: 700;
+			text-shadow: none;
+		}
+		.imgbb-container {
+			display: inline-block;
+			x-margin-top: 5px;
+			x-margin-bottom: 5px;
+		}
+		.imgbb-button-text {
+			margin-left: .25em;
+		}
+		.imgbb-button-icon, .imgbb-button-text {
+			display: inline-block;
+			vertical-align: middle;
+		}
+		.imgbb-button-icon svg {
+			display: block;
+			width: 1em;
+			height: 1em;
+			fill: currentColor;
+		}
+		.imgbb-button-icon, .imgbb-button-text {
+			display: inline-block;
+			vertical-align: middle;
+		}
 
-								}
-
-								.alert{
-									border:10px solid black;
-						     	padding:10px;
-						     	padding-right:30px;
-									display:block;
-							   	width: 400px;
-							   	max-width:90vw;
-							   	/*height: 200px;*/
-									/*border: 10px solid blue;*/
-									border-radius: 10px;
-									color:black;
-									background-color: white;
-									transition: border-radius .2s;
-									outline:1px solid white;
-								}
-								.prohlizece{
-									max-width:100%;
-								}
-
-								.ne-posun {
-								  overflow: hidden; /* Hide scrollbars */
-								}
-
-								.imgbb-button {
-								    line-height: normal;
-								    -webkit-transition: all .2s;
-								    -o-transition: all .2s;
-								    transition: all .2s;
-								    outline: 0;
-								    color: #333;
-								    border: none;
-								    cursor: pointer;
-								    border: 1px solid rgba(0, 0, 0, .15);
-								    background: #ececec;
-								    border-radius: .2em;
-								    padding: .5em 1em;
-								    font-size: 12px;
-								    font-weight: 700;
-								    text-shadow: none;
-								}
-								.imgbb-container {
-								    display: inline-block;
-								    x-margin-top: 5px;
-								    x-margin-bottom: 5px;
-								}
-								.imgbb-button-text {
-								    margin-left: .25em;
-								}
-								.imgbb-button-icon, .imgbb-button-text {
-								    display: inline-block;
-								    vertical-align: middle;
-								}
-								.imgbb-button-icon svg {
-								    display: block;
-								    width: 1em;
-								    height: 1em;
-								    fill: currentColor;
-								}
-								.imgbb-button-icon, .imgbb-button-text {
-								    display: inline-block;
-								    vertical-align: middle;
-								}
-
-								.policko{
-									box-shadow:0 0 black ;
-								}
-								.drobnyTlacitko{
-									width:fit-content;
-									x-background:transparent;
-								}
-								
-
-					
-
+		.policko{
+			box-shadow:0 0 black ;
+		}
+		.drobnyTlacitko{
+			width:fit-content;
+			x-background:transparent;
+		}
 	</style>
 	<script>
 		function getRandomInt(min, max) {
@@ -353,69 +345,78 @@
 				@hanspa.pro.vsechny<br>
 				<strong>pošli mi anonymní zprávy!</strong></div>
 			<div class="obalTextarea">
+				<!-- TEXTAREA -->
 				<textarea id=textarea onfocus="spodek.style.display = 'none'" maxlength="300" name="otazka" placeholder="Pošli nám anonymní zprávy..." oninput="this.style.height = (this.scrollHeight) +'px';if (this.value.length != 0){odeslat.style.display = 'block'}else{odeslat.style.display = 'none'}" ></textarea>
+				<!-- BUTTONS -->
+				<div class="imgbb-container">
+					<button onclick="dalsiBarva()" type="button" class="imgbb-button" >
+						<span class="imgbb-button-icon">
+							🎲<img class="imgbb-button-icon" src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Color_circle_%28RGB%29.svg" style=height:1em >
+						</span>
+						<span class="imgbb-button-text">změnit barvu</span>
+					</button>
+				</div>
 				
-					<script>
-						if(jeInstagram){
-						    let container = document.createElement('div');
-						    container.className = 'imgbb-container';
-						    container.innerHTML = `<button type="button" onclick='vyvolatAlert();return false' class="imgbb-button">
-						        <span class="imgbb-button-icon"><svg class="imgbb-button-icon" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
-						        <path d="M76.7 87.5c12.8 0 23.3-13.3 23.3-29.4 0-13.6-5.2-25.7-15.4-27.5 0 0-3.5-0.7-5.6 1.7 0 0 0.6 9.4-2.9 12.6 0 0 8.7-32.4-23.7-32.4 -29.3 0-22.5 34.5-22.5 34.5 -5-6.4-0.6-19.6-0.6-19.6 -2.5-2.6-6.1-2.5-6.1-2.5C10.9 25 0 39.1 0 54.6c0 15.5 9.3 32.7 29.3 32.7 2 0 6.4 0 11.7 0V68.5h-13l22-22 22 22H59v18.8C68.6 87.4 76.7 87.5 76.7 87.5z" style="fill: currentcolor;"></path>
-						        </svg></span><span class="imgbb-button-text">Přidat obrázek</span></button>`;
-						    document.querySelector(".obalTextarea").appendChild(container);
-						}
+				<!-- IMAGE-->
+				<img  id=obrazek >
 
-					</script>
-						<div class="imgbb-container"><button onclick="dalsiBarva()" type="button"   class="imgbb-button" ><span class="imgbb-button-icon">🎲
-<img class="imgbb-button-icon" src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Color_circle_%28RGB%29.svg" style=height:1em ></span><span class="imgbb-button-text">změnit barvu</span></button></div>
-						
-					<input id=barvaInput name=barva type=hidden>
-					<input id=imageUrl name=obrazek type=hidden>
+				<!-- HIDE INPUTS-->
+				<input id=barvaInput name=barva type=hidden>
+				<input id=imageUrl name=obrazek type=hidden>
 			
-			<img  id=obrazek >
+				
 			</div>
 		</div>
+		<!-- SPODNÍ DETAIL -->
 		<span style="padding:10px;display:inline-block;">🔒 anonymous q&a</span>
+		
+		<!-- SEND BUTTON -->
 		<button style="display:none;" id=odeslat><strong>Sent!</strong></button>
 
 		
 	</form>
 
-	<div style="width:100%" id="bottom">
+
+	<!-- spodní část stránky -->
+	<footer style="width:100%" id="bottom">
 		<div class="main" >
 			<!--<strong style="font-size:1.1em">👇 <span id=cislo>549</span> people just tapped the button👇</strong>-->
-
-			<a href="ngl.html"><button style="animation: animate-shake 2s ease-in-out infinite;"><strong>Přečti si co napsali ostatní!</strong></button></a>
-
+			<a href="ngl.html"><button style="animation: animate-shake 2s ease-in-out infinite;">
+				<strong>Přečti si co napsali ostatní!</strong>
+			</button></a>
 		</div>
-		<div id=pridejZaToObrazek ></div>
-		<script>
-				if (!jeInstagram) {
-				    let script = document.createElement("script");
-				    script.src = "https://imgbb.com/upload.js";
-				    script.async = true;
-				    script.setAttribute("data-auto-insert", "html-embed-medium");
-				    document.body.appendChild(script);
-				}
-
-			
-		</script>
-		
-	</div>
-
-
+		<div id="pridejZaToObrazek"></div>	
+	</footer>
 	<script>
+		if(jeInstagram){
+			let container = document.createElement('div');
+			container.className = 'imgbb-container';
+			container.innerHTML = `<button type="button" onclick='vyvolatAlert();return false' class="imgbb-button">
+				<span class="imgbb-button-icon"><svg class="imgbb-button-icon" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+				<path d="M76.7 87.5c12.8 0 23.3-13.3 23.3-29.4 0-13.6-5.2-25.7-15.4-27.5 0 0-3.5-0.7-5.6 1.7 0 0 0.6 9.4-2.9 12.6 0 0 8.7-32.4-23.7-32.4 -29.3 0-22.5 34.5-22.5 34.5 -5-6.4-0.6-19.6-0.6-19.6 -2.5-2.6-6.1-2.5-6.1-2.5C10.9 25 0 39.1 0 54.6c0 15.5 9.3 32.7 29.3 32.7 2 0 6.4 0 11.7 0V68.5h-13l22-22 22 22H59v18.8C68.6 87.4 76.7 87.5 76.7 87.5z" style="fill: currentcolor;"></path>
+				</svg></span><span class="imgbb-button-text">Přidat obrázek</span></button>`;
+			document.querySelector(".obalTextarea").appendChild(container);
+		}
+
+		if (!jeInstagram) {
+			let script = document.createElement("script");
+			script.src = "https://imgbb.com/upload.js";
+			script.async = true;
+			script.setAttribute("data-auto-insert", "html-embed-medium");
+			document.body.appendChild(script);
+		}
+
+	
 
 		document.getElementById("form").setAttribute("target","odeslat")
 
 
-		var nacitani = false
-		var textarea = document.getElementById('textarea')
-		var odeslat = document.getElementById('odeslat')
-		var spodek = document.getElementById("bottom")
-		var cislo = document.getElementById("cislo")
-		var obrazek = document.getElementById("obrazek")
+		let nacitani = false;
+		let textarea = document.getElementById('textarea');
+		let odeslat = document.getElementById('odeslat');
+		let spodek = document.getElementById("bottom");
+		let cislo = document.getElementById("cislo");
+		let obrazek = document.getElementById("obrazek");
 
 
 
@@ -518,7 +519,7 @@
 				
 
 			}catch(e){
-				console.log(e)
+				console.error(e)
 			}
 			
 		},100)
@@ -549,47 +550,33 @@
 			
 		}
 		function kopiruj(el) {
-			// Get the text field
 			var copyText = el;
-
-			// Select the text field
 			copyText.select();
 			copyText.setSelectionRange(0, 99999); // For mobile devices
-
-			// Copy the text inside the text field
 			navigator.clipboard.writeText(copyText.value);
 		}
 
 		var noveHTML = `<!DOCTYPE html>
+						<div class="main">
+							<div style="min-height:30px"><img onclick="window.location = window.location.href.split("?")[0];" src="https://ngl.link/images/left.png" alt="<" class=navigace></div>
+							<img  src="https://ngl.link/images/sent.png" style="width:15vh;margin:auto">
+							
+							<h1>Odesláno!</h1>
 
-	
+							<strong style="font-size:1.1em">👇<!--<span id=cislo>549</span>-->I to co už na instagramu zmizelo, bez cenzury👇</strong>
 
+							<a href="ngl.html"><button style="animation: animate-shake 2s ease-in-out infinite;"><strong>Podívej se co napsali ostatní!</strong></button></a>
+							<a class=odkaz href='javascript:window.location=window.location.href.split("?")[0]' >Send another message</a>
 
-	<div class="main">
-		<div style="min-height:30px"><img onclick="window.location = window.location.href.split("?")[0];" src="https://ngl.link/images/left.png" alt="<" class=navigace></div>
-		<img  src="https://ngl.link/images/sent.png" style="width:15vh;margin:auto">
-		
-		<h1>Odesláno!</h1>
-
-		<strong style="font-size:1.1em">👇<!--<span id=cislo>549</span>-->I to co už na instagramu zmizelo, bez cenzury👇</strong>
-
-		<a href="ngl.html"><button style="animation: animate-shake 2s ease-in-out infinite;"><strong>Podívej se co napsali ostatní!</strong></button></a>
-		<a class=odkaz href='javascript:window.location=window.location.href.split("?")[0]' >Send another message</a>
-
-	</div>
-	<div style="width:100%" id="bottom">
-		<div class="main" >
-			
-			<a href="https://apps.apple.com/us/app/peekaboo-make-new-friends/id1663086857" ><button class="tlacitko2"><b>New app from NGL 💙</b></button></a>
-		</div>
-	</div>
-
-
-
-
-
-	<\/script>
-`;
+						</div>
+						<div style="width:100%" id="bottom">
+							<div class="main" >
+								
+								<a href="https://apps.apple.com/us/app/peekaboo-make-new-friends/id1663086857" ><button class="tlacitko2"><b>New app from NGL 💙</b></button></a>
+							</div>
+						</div>
+						<\/script>
+						`;
 
 
 
