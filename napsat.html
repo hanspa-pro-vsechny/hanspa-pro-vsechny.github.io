@@ -19,8 +19,6 @@
 	//jeInstagram = true
 	//debug only 
 
-
-	
 </script>
 
 	<meta charset="utf-8">
@@ -306,7 +304,8 @@
 				<strong>pošli mi anonymní zprávy!</strong></div>
 			<div class="obalTextarea">
 				<!-- TEXTAREA -->
-				<textarea id=textarea onfocus="spodek.style.display = 'none'" maxlength="300" name="otazka" placeholder="Pošli nám anonymní zprávy..." oninput="this.style.height = (this.scrollHeight) +'px';if (this.value.length != 0){odeslat.style.display = 'block'}else{odeslat.style.display = 'none'}" ></textarea>
+				<textarea id=textarea onfocus="spodek.style.display = 'none'" maxlength="300" name="otazka" placeholder="Pošli nám anonymní zprávy..." oninput="this.style.height = (this.scrollHeight) +'px';if (this.value.length != 0){odeslat.style.display = 'block'}else{odeslat.style.display = 'none'}nahradURL()
+" ></textarea>
 				<!-- BUTTONS -->
 				<div class="imgbb-container">
 					<button onclick="dalsiBarva()" type="button" class="imgbb-button" >
@@ -364,11 +363,17 @@
 			if(window.location.search.indexOf("barva=") != -1){
 				barvaInput.value = decodeURIComponent(window.location.search.split("barva=")[1].split("&")[0])
 				document.getElementsByTagName('html')[0].style.background = barvaInput.value
-				document.getElementsByTagName('html')[0].style.color = invertColor(barvaInput.value,true)
+				var otovenaBarva = window.getComputedStyle( document.getElementsByTagName('html')[0] ,null).getPropertyValue('background-color'); 
+				document.getElementsByTagName('html')[0].style.color = invertColor(otovenaBarva,true)
 			}
 		}
 
-
+		function nahradURL(){
+			const url = new URL(location);
+			url.searchParams.set("text",textarea.value)
+			url.searchParams.set("barva", barvaInput.value )
+			history.replaceState({}, document.title, url);
+		}
 
 		function extractImageUrl() {
 		    const imageUrlInput = document.getElementById('imageUrl');
@@ -398,6 +403,9 @@
 
 		function nacteno() {
 			if(nacitani){
+				barvaInput.value = "";
+				textarea.value   = "";
+				nahradURL();
 
 				document.body.innerHTML = noveHTML
 				setTimeout(function(){
@@ -418,9 +426,14 @@
 			document.getElementById("alert-pozadi").style.display = "flex"
 			document.body.classList.add("ne-posun")
 
-			//upraví url v inputu, aby používala parametr barva a text pro lepší user experience	
-			var url = window.location.href.split("?")[0] + "?barva=" + barvaInput.value + "&text=" + encodeURIComponent(textarea.value)
+			//upraví url v inputu, aby používala parametr barva a text
+			const url = new URL(location);
+			url.searchParams.set("text",textarea.value)
+			url.searchParams.set("barva",barvaInput.value)
+			//var url = window.location.href.split("?")[0] + "?barva=" + barvaInput.value + "&text=" + encodeURIComponent(textarea.value)
 			document.getElementById("kod").value = url
+			window.history.pushState({}, document.title, url);
+
 		}
 
 		function zrusitAlert(){
@@ -446,7 +459,7 @@
 				document.body.appendChild(script);
 			}
 		}
-		prelozIMGBBTlacitko(){
+		function prelozIMGBBTlacitko(){
 			setTimeout(()=>{
 				try{
 					if(document.getElementsByClassName('imgbb-button-text').length == 2){
@@ -469,10 +482,11 @@
 
 		//MAIN -------------------------------------------------
 		pridejIMGBBTlacitko();
+		document.getElementById("form").setAttribute("target","odeslat")
 		zpracujParametry()
 		prelozIMGBBTlacitko();
 		setInterval(extractImageUrl,500)
-		document.getElementById("form").setAttribute("target","odeslat")
+		
 		
 		//------------------------------------------------------
 

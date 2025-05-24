@@ -44,6 +44,7 @@ function dalsiBarva(){
     barva = barvy.random()
 
     barvaInput.value = barva //POZOR: musí být dřív než to další, protože to další moc nefunguje a občas barva na konci je absolutně jiná než ta puvodní 
+    nahradURL();
     console.log("barva v inputu",barva)
 
     document.getElementsByTagName('html')[0].style.background = barva
@@ -58,6 +59,7 @@ function dalsiBarva(){
     barvaPopredi = invertColor(barva,true) //je lepší černá nebo bílá?
     console.log("popředí",barvaPopredi)
     document.getElementsByTagName('html')[0].style.color = barvaPopredi
+    
 
     
 }
