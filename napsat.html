@@ -23,7 +23,7 @@
 
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>@hanspa.pro.vsechny - NGL link</title>
+	<title>@hanspa.pro.vsechny</title>
 	<style>
 		html {
 			box-sizing: border-box;
@@ -96,7 +96,7 @@
 			padding-right:10px;
 
 		}
-		button{
+		.tlacitko{
 			width:100%;
 			background-color: black;
 			border-radius:100px;
@@ -290,8 +290,8 @@
 			<!--<h2>Pokud chceš přidat obrázek, musíš otevřít tuto stránku v jiné aplikaci. (třeba v menu (<b style="">⋮</b>) nahoře <b>↗</b> klikni na <i>otevřít v...</i>)</h2>-->
 			<!--<img class=prohlizece src=images/prohlizece.png >-->
 			<input readonly class=kod id=kod style="padding:2px;display: inline-block;border:1px solid black;font-size: 1.2em;font-family: monospace;" value="https://1url.cz/O1euL" onfocus="this.select()">
-			<button class="drobnyTlacitko" onclick="kopiruj(kod);this.innerHTML = '✅teď to vlož do prohlížeče!'">📋kopíruj</button>
-			<button class=tlacitko2 onclick="zrusitAlert()" style="background:#33333333">❌ zrušit</button>
+			<button class="drobnyTlacitko tlacitko" onclick="kopiruj(kod);this.innerHTML = '✅teď to vlož do prohlížeče!'">📋kopíruj</button>
+			<button class="tlacitko tlacitko2" onclick="zrusitAlert()" style="background:#33333333">❌ zrušit</button>
 		</div>
 		
 	</div>
@@ -299,9 +299,9 @@
 	<form id="form" onsubmit="nacitat()" data-target="odeslat" action="https://script.google.com/macros/s/AKfycbwTqS0vzNNJV7bCS37qe1Ezoj_Gl0VHO7VAtMmwCDufWiQSfp9HIxU2aBbL7bej3Weg/exec" class=main>
 		<div class="policko">
 			<div class="top">
-				<img class=logo src="https://firebasestorage.googleapis.com/v0/b/ask-fun-d10f0.appspot.com/o/images%2F7A9A8BC1-04E9-4B52-8188-EC2DB41C0AC2.jpg?alt=media&token=1d38ec7a-abc7-449e-a83e-4405378fc214" >
+				<img class=logo src="https://i.ibb.co/yBMpBXvw/image.png" >
 				@hanspa.pro.vsechny<br>
-				<strong>pošli mi anonymní zprávy!</strong></div>
+				<strong>pošli nám anonymní zprávy!</strong></div>
 			<div class="obalTextarea">
 				<!-- TEXTAREA -->
 				<textarea id=textarea onfocus="spodek.style.display = 'none'" maxlength="300" name="otazka" placeholder="Pošli nám anonymní zprávy..." oninput="this.style.height = (this.scrollHeight) +'px';if (this.value.length != 0){odeslat.style.display = 'block'}else{odeslat.style.display = 'none'}nahradURL()
@@ -327,10 +327,10 @@
 			</div>
 		</div>
 		<!-- SPODNÍ DETAIL -->
-		<span style="padding:10px;display:inline-block;">🔒 anonymous q&a</span>
+		<span style="padding:10px;display:inline-block;"> 🔒 anonymní zprávy</span>
 
 		<!-- SEND BUTTON -->
-		<button style="display:none;" id=odeslat><strong>Sent!</strong></button>	
+		<button class="tlacitko" style="display:none;" id=odeslat><strong>Sent!</strong></button>	
 	</form>
 
 
@@ -338,7 +338,7 @@
 	<footer style="width:100%" id="bottom">
 		<div class="main" >
 			<!--<strong style="font-size:1.1em">👇 <span id=cislo>549</span> people just tapped the button👇</strong>-->
-			<a href="ngl.html"><button style="animation: animate-shake 2s ease-in-out infinite;">
+			<a href="zobrazit.html"><button class="tlacitko" style="animation: animate-shake 2s ease-in-out infinite;">
 				<strong>Přečti si co napsali ostatní!</strong>
 			</button></a>
 		</div>
@@ -409,7 +409,7 @@
 
 				document.body.innerHTML = noveHTML
 				setTimeout(function(){
-					document.title = "NGL - sent!"
+					document.title = "Odesláno!"
 					/*var cislo = document.getElementById("cislo")
 					setInterval(function(){
 						cislo.innerHTML = parseInt(cislo.innerHTML)+ getRandomInt(-3,3)
@@ -505,14 +505,13 @@
 
 							<strong style="font-size:1.1em">👇<!--<span id=cislo>549</span>-->I to co už na instagramu zmizelo, bez cenzury👇</strong>
 
-							<a href="ngl.html"><button style="animation: animate-shake 2s ease-in-out infinite;"><strong>Podívej se co napsali ostatní!</strong></button></a>
+							<a href="zobrazit.html"><button class="tlacitko" style="animation: animate-shake 2s ease-in-out infinite;"><strong>Podívej se co napsali ostatní!</strong></button></a>
 							<a class=odkaz href='javascript:window.location=window.location.href.split("?")[0]' >Send another message</a>
 
 						</div>
 						<div style="width:100%" id="bottom">
 							<div class="main" >
 								
-								<a href="https://apps.apple.com/us/app/peekaboo-make-new-friends/id1663086857" ><button class="tlacitko2"><b>New app from NGL 💙</b></button></a>
 							</div>
 						</div>
 						<\/script>

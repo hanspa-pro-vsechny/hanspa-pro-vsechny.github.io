@@ -77,7 +77,8 @@
 				  box-sizing: inherit;
 				}
 				.okoly{
-					padding:800px;
+					padding:300px;
+					padding-right:800px;
 					background-color:black;
 				}
 				.img{
@@ -171,7 +172,8 @@ const captureBtn = document.getElementById('captureBtn');
 captureBtn.addEventListener('click', () => {
 	document.getElementById('content').classList.add("okoly")
   html2canvas(document.getElementById('content'), { scale: 2 }).then(canvas => {
-    // Convert the canvas to a data URL in PNG format
+
+	    // Convert the canvas to a data URL in PNG format
 
     const imageDataURL = canvas.toDataURL('image/png');
 
